@@ -1,8 +1,16 @@
-# React + Vite
+# Bazo el organo huerfano
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto tiene como objetivo desarrollar una aplicación web 3D colaborativa que eduque a
+los usuarios sobre enfermedades específicas del bazo. A través de un entorno inmersivo e interactivo, los usuarios aprenderán sobre los aspectos
+clave de la enfermedad, incluyendo qué es, sus síntomas, opciones de tratamiento, métodos de
+prevención y autocuidado. La aplicación se diseñará para ofrecer una experiencia educativa
+atractiva y accesible, utilizando tecnologías modernas para lograr una comprensión profunda del
+tema elegido.
 
-Currently, two official plugins are available:
+# Creado por:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Alejandro Gómez Anaya
+- Hider Brandon Vargas
+- Steven Murillo
+- Gary Trujillo
+- Juan Viednam
