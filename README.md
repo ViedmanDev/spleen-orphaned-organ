@@ -14,3 +14,4 @@ tema elegido.
 - Steven Murillo
 - Gary Trujillo
 - Juan Viednam
+- sebastian hurtado
