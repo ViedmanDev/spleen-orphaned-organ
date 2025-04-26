@@ -1,8 +1,10 @@
+import Header from "@components/layout/Header/Header";
+// import styles from "./page.module.css"
+
 export default function Home() {
     return (
-        <div>
-            <h1>Welcome to the Science Gateway</h1>
-            <p>This is a 3D website.</p>
-        </div>
+        <>
+            <Header />
+        </>
     );
 };
