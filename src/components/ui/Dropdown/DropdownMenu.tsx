@@ -1,54 +1,25 @@
 import { Dropdown, Space } from "antd";
-import { DownOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
+import styles from "@styles/ui/DropdownMenu.module.css";
 
-const items: MenuProps['items'] = [
-    {
-        key: '1',
-        label: (
-            <a href="" target="_blank" rel="noopener noreferrer">
-                Trauma abdominal
-            </a>
-        ),
-    },
-    {
-        key: '2',
-        label: (
-            <a href="" target="_blank" rel="noopener noreferrer">
-                Trombosis esplénica
-            </a>
-        ),
-    },
-    {
-        key: '3',
-        label: (
-            <a href="" target="_blank" rel="noopener noreferrer">
-                Infarto esplénico
-            </a>
-        ),
-    },
-    {
-        key: '4',
-        label: (
-            <a href="" target="_blank" rel="noopener noreferrer">
-                Infarto intestinal
-            </a>
-        ),
-    }
-];
+interface DropdownMenuProps {
+    items: MenuProps['items'];
+    icon?: React.ReactNode;
+    label?: string;
+}
 
-const DropdownMenu = () => {
+const DropdownMenu: React.FC<DropdownMenuProps> = ({
+    items,
+    icon,
+    label = "Menu"
+}) => {
     return (
-        <>
-            <Dropdown
-                menu={{ items }}
-            >
-                <Space>
-                    DISEASES
-                    <DownOutlined />
+        <Dropdown menu={{ items }} className={styles.dropdownMenu}>
+                <Space className={styles.dropdownMenu__space}>
+                    {icon}
+                    {label}
                 </Space>
-            </Dropdown>
-        </>
+        </Dropdown>
     )
 }
 

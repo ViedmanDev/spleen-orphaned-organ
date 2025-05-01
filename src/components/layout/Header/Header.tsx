@@ -1,7 +1,43 @@
 import styles from "@styles/layout/Header.module.css";
 import DropdownMenu from "@components/ui/Dropdown/DropdownMenu";
 import { Divider } from "antd";
-import Image from "next/image";
+import { DownOutlined } from "@ant-design/icons";
+
+const items = [
+    {
+        key: '1',
+        label: (
+            <a href="" target="_blank" rel="noopener noreferrer">
+                Trauma abdominal
+            </a>
+        ),
+    },
+    {
+        key: '2',
+        label: (
+            <a href="" target="_blank" rel="noopener noreferrer">
+                Trombosis esplénica
+            </a>
+        ),
+    },
+    {
+        key: '3',
+        label: (
+            <a href="" target="_blank" rel="noopener noreferrer">
+                Infarto esplénico
+            </a>
+        ),
+    },
+    {
+        key: '4',
+        label: (
+            <a href="" target="_blank" rel="noopener noreferrer">
+                Infarto intestinal
+            </a>
+        ),
+    }
+];
+
 
 const Header = () => {
     return (
@@ -12,7 +48,7 @@ const Header = () => {
                     <ul>
                         <li><a href="">HOME</a></li>
                         <li><a href="">ABOUT US</a></li>
-                        <li>    <DropdownMenu /> </li>
+                        <li><DropdownMenu icon={<DownOutlined /> } items={items}  label="DISEASES"/></li>
                         <li><a href="">CURIOSITIES</a></li>
                         <li><a href="">QUIZ</a></li>
                         <li><a href="">PAGES</a></li>
@@ -31,7 +67,7 @@ const Header = () => {
                 </div>
                 <div className={styles.right_section}>
                     <img
-                        src="/assets/logo.jpg"
+                        src="/assets/logo.png"
                         alt="logo"
                         width={500}
                         height={500}
