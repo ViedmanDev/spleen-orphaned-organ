@@ -2,6 +2,10 @@
     --font-poppins: 'Poppins', sans-serif;
 }
 
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 /* Tipografía principal */
 h1,
 h2 {
