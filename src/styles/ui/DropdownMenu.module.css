@@ -1,0 +1,5 @@
+.dropdownMenu {
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+}
