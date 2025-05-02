@@ -1,8 +1,10 @@
 import styles from '@styles/layout/Footer.module.css';
 import DropdownMenu from '@components/ui/Dropdown/DropdownMenu';
 import { RightOutlined } from '@ant-design/icons';
-import { MailFilled,
-    EnvironmentFilled} from '@ant-design/icons';
+import {
+    MailFilled,
+    EnvironmentFilled
+} from '@ant-design/icons';
 import { footerNavLinks, socialIcons } from '@config/footer.config';
 
 const Footer = () => {
@@ -51,7 +53,7 @@ const Footer = () => {
                         ))}
                     </div>
                 </nav>
-                <nav className={styles.footer_contact}>
+                <section className={styles.footer_contact}>
                     <h1 className={styles.footer_contact_title}>CONTÁCTANOS</h1>
                     <div className={styles.footer_contact_info}>
                         <div className={styles.footer_contact_item}>
@@ -67,7 +69,7 @@ const Footer = () => {
                     <button className={styles.footer_contact_button}>
                         Enviar
                     </button>
-                </nav>
+                </section>
             </footer>
         </>
     )
