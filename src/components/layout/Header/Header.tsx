@@ -2,12 +2,13 @@ import styles from "@styles/layout/Header.module.css";
 import DropdownMenu from "@components/ui/Dropdown/DropdownMenu";
 import { Divider } from "antd";
 import { DownOutlined } from "@ant-design/icons";
+import { routes } from "@config/routes.config";
 
 const items = [
     {
         key: '1',
         label: (
-            <a href="" target="_blank" rel="noopener noreferrer">
+            <a href={routes.viedman} target="_blank" rel="noopener noreferrer">
                 Trauma abdominal
             </a>
         ),
@@ -46,12 +47,12 @@ const Header = () => {
                 <p className={styles.title}>SCIENCE <br /> GATEWAY</p>
                 <nav className={styles.navigation_menu}>
                     <ul>
-                        <li><a href="">INICIO</a></li>
-                        <li><a href="">SOBRE NOSOTROS</a></li>
+                        <li><a href={routes.home}>INICIO</a></li>
+                        <li><a href={routes.aboutUs}>SOBRE NOSOTROS</a></li>
                         <li><DropdownMenu icon={<DownOutlined />} items={items} label="ENFERMEDADES" /></li>
-                        <li><a href="">CURIOSIDADES</a></li>
-                        <li><a href="">QUIZ</a></li>
-                        <li><a href="">MENÚ</a></li>
+                        <li><a href={routes.curiosities}>CURIOSIDADES</a></li>
+                        <li><a href={routes.quiz}>QUIZ</a></li>
+                        <li><a href="#">MENÚ</a></li>
                     </ul>
                 </nav>
             </div>
