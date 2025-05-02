@@ -34,7 +34,7 @@ export default function AboutUs() {
                     <TeamBlock name="Sebastian Hurtado" image="" />
                     <TeamBlock name="Brandon Vargas" image="" />
                     <TeamBlock name="Gary Díaz" image="" />
-                    <TeamBlock name="Juan Viedman" image="/assets/viedman-photo.jpg" />
+                    <TeamBlock name="Juan Viedman" image="/assets/Viedman-photo.jpg" />
                 </div>
             </section>
         </>
