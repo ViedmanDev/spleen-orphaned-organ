@@ -2,7 +2,7 @@
 
 import { Canvas } from "@react-three/fiber";
 import styles from "@styles/routes/about-us.module.css"
-import HomeSpleen from "@components/ui/DiseasesModels/HomeSpleen";
+import LogoModel from "@components/ui/LogoModel/LogoModel";
 import { OrbitControls } from "@react-three/drei";
 import TeamBlock from "@components/ui/TeamBlock/TeamBlock";
 
@@ -14,7 +14,7 @@ export default function AboutUs() {
                     <Canvas className={styles.viewer} camera={{ position: [0, 0, 5.5] }}>
                         <ambientLight intensity={0.5} />
                         <directionalLight position={[5, 5, 5]} intensity={1} />
-                        <HomeSpleen />
+                        <LogoModel />
                         <OrbitControls enableZoom={true}
                             enableRotate={true}
                             enablePan={true}
