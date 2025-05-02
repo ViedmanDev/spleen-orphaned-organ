@@ -1,0 +1,41 @@
+:root {
+    --font-poppins: 'Poppins', sans-serif;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* Tipografía principal */
+h1,
+h2 {
+    font-family: var(--font-poppins);
+    font-weight: 700;
+    /* Poppins 700 */
+}
+
+h3,
+h4 {
+    font-family: var(--font-poppins);
+    font-weight: 600;
+    /* Poppins 600 */
+}
+
+/* Body */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-poppins);
+    font-weight: 400;
+    /* Poppins 400 */
+}
+
+/* Labels y botones */
+label,
+button,
+input,
+select {
+    font-family: var(--font-poppins);
+    font-weight: 500;
+    /* Poppins 500 */
+}
