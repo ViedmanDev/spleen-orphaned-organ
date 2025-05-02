@@ -1,6 +1,5 @@
 .about_section {
     display: flex;
-    align-items: stretch;
     flex-wrap: nowrap;
     padding: 2rem;
 }
@@ -23,4 +22,18 @@
 
 .about_section_text {
     color: #A63372;
+}
+
+.team_section {
+    display: grid;
+}
+
+.team_section_container {
+    display: flex;
+    width: auto;
+    flex-direction: row;
+    align-items: center;
+    /* justify-content: center; */
+    gap: 2rem;
+    padding: 2rem;
 }
