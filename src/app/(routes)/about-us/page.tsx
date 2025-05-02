@@ -25,9 +25,7 @@ export default function AboutUs() {
                 <div className={styles.about_section_right}>
                     <h1 className={styles.about_section_title}>¿QUIÉNES SOMOS?</h1>
                     <p className={styles.about_section_text}>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio laudantium, esse est dicta quisquam cum officiis voluptatem nobis eum voluptates porro cupiditate reiciendis neque laboriosam at veniam nulla modi. Doloremque.
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi numquam fugiat rerum. Repudiandae in assumenda aperiam nisi ratione nostrum consequatur, esse quas nobis ad! Nisi corporis laborum quidem? Blanditiis, itaque.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime temporibus iure cupiditate minus id commodi voluptatem ex! Ad quis tenetur, assumenda repellendus, necessitatibus consequuntur eligendi odio, veritatis et cum libero?
+                        Somos un grupo de estudiantes de la Universidad del Valle apasionados por la ciencia y la tecnología. En Science Gateway, nuestra misión es hacer que el conocimiento científico sea accesible, comprensible y emocionante para todos. A través de nuestras investigaciones, proyectos y recursos educativos, buscamos inspirar curiosidad y fomentar la comprensión de los temas científicos que nos rodean. Creemos en el poder de la educación para transformar el mundo y estamos comprometidos con el aprendizaje continuo y el intercambio de ideas.
                     </p>
                 </div>
             </section>

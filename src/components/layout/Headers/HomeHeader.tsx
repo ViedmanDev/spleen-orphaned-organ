@@ -49,7 +49,7 @@ const HomeHeader = () => {
                     <ul>
                         <li><a href={routes.home}>INICIO</a></li>
                         <li><a href={routes.aboutUs}>SOBRE NOSOTROS</a></li>
-                        <li><DropdownMenu icon={<DownOutlined />} items={items} label="ENFERMEDADES" /></li>
+                        <li><DropdownMenu icon={<DownOutlined />} items={items} label="ENFERMEDADES" color="#BF5050"/></li>
                         <li><a href={routes.curiosities}>CURIOSIDADES</a></li>
                         <li><a href={routes.quiz}>QUIZ</a></li>
                         <li><a href="#">MENÚ</a></li>
