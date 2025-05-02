@@ -32,8 +32,8 @@ const items = [
     {
         key: '4',
         label: (
-            <a href="" target="_blank" rel="noopener noreferrer">
-                Infarto intestinal
+            <a href={routes.hurtado}  target="_blank" rel="noopener noreferrer">
+                Quiste esplénico
             </a>
         ),
     }
