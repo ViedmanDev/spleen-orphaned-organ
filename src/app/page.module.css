@@ -56,35 +56,3 @@
     font-size: 41rem;
     font-weight: 900;
 }
-
-.about_section {
-    display: flex;
-    align-items: stretch;
-    flex-wrap: nowrap;
-    padding: 2rem;
-}
-
-.about_section_left {
-    background-color: #BF7E78;
-    width: 50%;
-}
-
-.about_section_right {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 2rem;
-}
-
-.about_section_title {
-    color: #BF5050;
-}
-
-.about_section_subtitle {
-    color: #A63372;
-}
-
-.about_section_text {
-    color: #A63372;
-}
