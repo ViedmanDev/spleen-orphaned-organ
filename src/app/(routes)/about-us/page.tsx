@@ -1,9 +1,9 @@
 "use client"
 
 import { Canvas } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
 import styles from "@styles/routes/about-us.module.css"
 import LogoModel from "@components/ui/LogoModel/LogoModel";
-import { OrbitControls } from "@react-three/drei";
 import TeamBlock from "@components/ui/TeamBlock/TeamBlock";
 
 export default function AboutUs() {
