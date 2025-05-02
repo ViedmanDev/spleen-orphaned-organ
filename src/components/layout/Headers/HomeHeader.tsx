@@ -61,7 +61,9 @@ const HomeHeader = () => {
                 <div className={styles.left_section}>
                     <h1 className={styles.title_left_section}>BIENVENIDO A SCIENCE GATEWAY</h1>
                     <h1 className={styles.subtitle_left_section}>EXPLORA EL <br />MICROSCOPICO <br />UNIVERSO DE TÚ <br />BAZO</h1>
-                    <p className={styles.text_left_section}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt illum soluta odit beatae nesciunt. Quas dolorum eveniet, doloribus totam unde quaerat laudantium, incidunt error cupiditate sapiente expedita? Doloribus, numquam. Ex.</p>
+                    <p className={styles.text_left_section}>
+                        Este es el portal donde la ciencia cobra vida. Te invitamos a descubrir el microscópico universo de tu bazo, un órgano muchas veces ignorado pero fundamental para tu salud. A través de datos curiosos, ilustraciones claras y contenido accesible, aprenderás cómo este pequeño guardián participa en la defensa de tu cuerpo y en el equilibrio de tu sangre. ¡Explora, aprende y sorpréndete!
+                    </p>
                     <button className={styles.button_left_section}>
                         SOBRE NOSOTROS
                     </button>
