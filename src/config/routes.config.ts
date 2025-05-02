@@ -15,7 +15,7 @@ export const routes = {
 export const routeTitles: Record<string, string> = {
     '/personal-diseases/jsvr': 'TRAUMA ABDOMINAL',
     '/personal-diseases/aga': 'Trauma',
-    '/personal-diseases/smh': 'Smh',
+    '/personal-diseases/smh': 'QUISTE ESPLÉNICO',
     '/personal-diseases/gdtm': 'gdtm',
     '/about-us': 'SOBRE NOSOTROS',
     '/curiosities': 'CURIOSIDADES',
