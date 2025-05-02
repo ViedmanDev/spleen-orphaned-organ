@@ -1,9 +1,11 @@
 import OrgansSection from '@components/layout/OrgansSection/OrgansSection';
 import styles from './page.module.css';
+import HomeHeader from '@components/layout/Headers/HomeHeader';
 
 export default function Home() {
     return (
         <>
+            <HomeHeader />
             <section className={styles.info_box}>
                 <div className={styles.card_grid}>
                     <article className={styles.card}>
