@@ -46,23 +46,23 @@ const Header = () => {
                 <p className={styles.title}>SCIENCE <br /> GATEWAY</p>
                 <nav className={styles.navigation_menu}>
                     <ul>
-                        <li><a href="">HOME</a></li>
-                        <li><a href="">ABOUT US</a></li>
-                        <li><DropdownMenu icon={<DownOutlined /> } items={items}  label="DISEASES"/></li>
-                        <li><a href="">CURIOSITIES</a></li>
+                        <li><a href="">INICIO</a></li>
+                        <li><a href="">SOBRE NOSOTROS</a></li>
+                        <li><DropdownMenu icon={<DownOutlined />} items={items} label="ENFERMEDADES" /></li>
+                        <li><a href="">CURIOSIDADES</a></li>
                         <li><a href="">QUIZ</a></li>
-                        <li><a href="">PAGES</a></li>
+                        <li><a href="">MENÚ</a></li>
                     </ul>
                 </nav>
             </div>
             <Divider className={styles.divider} />
             <nav className={styles.bottom_section}>
                 <div className={styles.left_section}>
-                    <h1 className={styles.title_left_section}>WELCOME TO SCIENCE GATEWAY</h1>
-                    <h1 className={styles.subtitle_left_section}>EXPLORE THE <br />MICROSCOPIC <br />UNIVERSE OF YOUR <br />SPLEEN</h1>
+                    <h1 className={styles.title_left_section}>BIENVENIDO A SCIENCE GATEWAY</h1>
+                    <h1 className={styles.subtitle_left_section}>EXPLORA EL <br />MICROSCOPICO <br />UNIVERSO DE TÚ <br />BAZO</h1>
                     <p className={styles.text_left_section}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt illum soluta odit beatae nesciunt. Quas dolorum eveniet, doloribus totam unde quaerat laudantium, incidunt error cupiditate sapiente expedita? Doloribus, numquam. Ex.</p>
                     <button className={styles.button_left_section}>
-                        ABOUT US
+                        SOBRE NOSOTROS
                     </button>
                 </div>
                 <div className={styles.right_section}>
