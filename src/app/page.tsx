@@ -25,21 +25,6 @@ export default function Home() {
                     </article>
                 </div>
             </section>
-            {/* <section className={styles.about_section}>
-                <div className={styles.about_section_left}></div>
-                <div className={styles.about_section_right}>
-                    <h2 className={styles.about_section_subtitle}>¿QUIÉNES SOMOS?</h2>
-                    <h1 className={styles.about_section_title}>EXPLORA EL MICROSCÓPICO MUNDO DE TÚ BAZO</h1>
-                    <p className={styles.about_section_text}>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio laudantium, esse est dicta quisquam cum officiis voluptatem nobis eum voluptates porro cupiditate reiciendis neque laboriosam at veniam nulla modi. Doloremque.
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi numquam fugiat rerum. Repudiandae in assumenda aperiam nisi ratione nostrum consequatur, esse quas nobis ad! Nisi corporis laborum quidem? Blanditiis, itaque.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime temporibus iure cupiditate minus id commodi voluptatem ex! Ad quis tenetur, assumenda repellendus, necessitatibus consequuntur eligendi odio, veritatis et cum libero?
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio laudantium, esse est dicta quisquam cum officiis voluptatem nobis eum voluptates porro cupiditate reiciendis neque laboriosam at veniam nulla modi. Doloremque.
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi numquam fugiat rerum. Repudiandae in assumenda aperiam nisi ratione nostrum consequatur, esse quas nobis ad! Nisi corporis laborum quidem? Blanditiis, itaque.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime temporibus iure cupiditate minus id commodi voluptatem ex! Ad quis tenetur, assumenda repellendus, necessitatibus consequuntur eligendi odio, veritatis et cum libero?
-                    </p>
-                </div>
-            </section> */}
             <section>
                 <OrgansSection />
             </section>
