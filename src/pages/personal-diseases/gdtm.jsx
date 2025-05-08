@@ -1,8 +1,16 @@
 // src/pages/personal-diseases/gdtm.jsx
 
-import React from 'react';
+"use client";
+
+import React, { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
-// import { Suspense } from 'react'; // solo si usas modelos 3D cargados dinámicamente
+import { OrbitControls, useGLTF } from '@react-three/drei';
+
+// Componente para el modelo 3D
+function Modelo3DInfarto() {
+  const { scene } = useGLTF('/models/bazoinfarto.glb'); // Asegúrate de que el modelo esté en public/models
+  return <primitive object={scene} scale={0.015} position={[0, -1, 0]} />;
+}
 
 function InfartoEsplenico() {
   return (
@@ -23,13 +31,13 @@ function InfartoEsplenico() {
         </p>
 
         <div style={{ height: '400px', marginTop: '1rem' }}>
-          {/* Aquí va el modelo 3D */}
-          <Canvas>
-            {/* <Suspense fallback={null}> */}
-            {/*     <Modelo3DInfarto /> */}
-            {/* </Suspense> */}
+          <Canvas camera={{ position: [0, 0, 3] }}>
             <ambientLight intensity={0.5} />
             <directionalLight position={[2, 2, 2]} />
+            <Suspense fallback={null}>
+              <Modelo3DInfarto />
+            </Suspense>
+            <OrbitControls />
           </Canvas>
         </div>
       </section>
@@ -43,7 +51,6 @@ function InfartoEsplenico() {
           <li>Náuseas o vómitos</li>
           <li>Malestar general</li>
         </ul>
-        {/* 3D en el futuro */}
       </section>
 
       {/* Sección 3: Tratamiento */}
@@ -70,7 +77,7 @@ function InfartoEsplenico() {
       <section style={{ marginTop: '2rem', backgroundColor: '#f2f2f2', padding: '1rem', borderRadius: '8px' }}>
         <h2>¿En qué se diferencia del trombosis esplénica?</h2>
         <p>
-          Aunque ambas afectan el flujo sanguíneo en el bazo, la **trombosis esplénica** consiste en
+          Aunque ambas afectan el flujo sanguíneo en el bazo, la <strong>trombosis esplénica</strong> consiste en
           la formación de un coágulo dentro de la vena esplénica, mientras que el infarto esplénico
           afecta típicamente a la arteria y causa muerte del tejido. La trombosis puede llevar a
           congestión y esplenomegalia, pero no siempre causa necrosis.
