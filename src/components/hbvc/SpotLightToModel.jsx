@@ -20,10 +20,10 @@ const SpotLightToModel = () => {
   const spotTargetRef = useRef();
 
   // Helpers visuales para desarrollo
-  useHelper(directionalLightRef, DirectionalLightHelper, 1, 'orange');
+  /*useHelper(directionalLightRef, DirectionalLightHelper, 1, 'orange');
   useHelper(spotLightRef, SpotLightHelper, 'red');
   useHelper(pointLightRef, PointLightHelper, 1, 'cyan');
-  useHelper(hemisphereLightRef, HemisphereLightHelper, 1);
+  useHelper(hemisphereLightRef, HemisphereLightHelper, 1);*/
 
   // Movimiento suave de luz direccional
   useFrame((state) => {
