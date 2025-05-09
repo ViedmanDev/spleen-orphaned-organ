@@ -9,24 +9,43 @@ const TrombosisInfo = () => {
   return (
     <Html position={[0, 1.2, 0]} center distanceFactor={5} zIndexRange={[100, 0]}>
       <div style={{
-        backgroundColor: 'rgba(0,0,0,0.8)',
+        backgroundColor: 'rgba(0, 0, 0, 0.85)',
         padding: '1.5rem',
-        borderRadius: '10px',
-        color: 'white',
+        borderRadius: '12px',
+        color: '#F2D8C2',
         width: '480px',
-        height: '270px',
+        maxHeight: '320px',
+        overflowY: 'auto',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center',
         fontFamily: 'sans-serif',
         boxSizing: 'border-box',
+        justifyContent: 'flex-start',
       }}>
-        <h3 style={{ margin: '0 0 0.8rem 0', fontSize: '1.5rem', color: '#BF5050' }}>
-          {info.title}
-        </h3>
-        <p style={{ margin: 0, fontSize: '1.1rem', lineHeight: 1.6 }}>
-          {info.content}
-        </p>
+        {info.image && (
+          <img
+            src={info.image}
+            alt={info.title}
+            style={{
+              width: '100%',
+              height: '160px',
+              objectFit: 'cover',
+              borderRadius: '8px',
+              marginBottom: '1rem',
+              border: '2px solid #BF7E78',
+            }}
+          />
+        )}
+        <div>
+          <h3 style={{
+            margin: '0 0 0.5rem 0',
+            fontSize: '1.4rem',
+            color: '#BF5050',
+          }}>{info.title}</h3>
+          <p style={{ margin: 0, fontSize: '1.05rem', lineHeight: 1.5 }}>
+            {info.content}
+          </p>
+        </div>
       </div>
     </Html>
   );
