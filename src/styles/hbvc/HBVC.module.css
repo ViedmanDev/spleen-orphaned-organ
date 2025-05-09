@@ -35,5 +35,31 @@
     border: 2px solid #BF5050;
     border-radius: 10px;
     overflow: hidden;
+    position: relative; 
   }
-  
+.controls {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  z-index: 10;
+}
+
+.controls button {
+  background-color: #A63247;
+  color: white;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  font-size: 1.25rem;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.2s ease;
+}
+
+.controls button:hover {
+  background-color: #BF5050;
+}
+
+

@@ -7,11 +7,11 @@ import TextTitle3D from '../../../components/hbvc/TextTitle3D';
 import TrombosisInfo from '../../../components/hbvc/TrombosisInfo';
 import SpotLightToModel from '../../../components/hbvc/SpotLightToModel';
 import CameraFocus from '../../../components/hbvc/CameraFocus';
-import { useStore } from '../../../components/hbvc/stores/stores';
+import { useStore  } from '../../../components/hbvc/stores/stores';
 import styles from '../../../styles/hbvc/HBVC.module.css';
 
 export default function HBVCPage() {
-  const { showInfo, toggleInfo } = useStore();
+  const { showInfo, toggleInfo , nextInfo, prevInfo  } = useStore();
 
   return (
     <section className={styles.container}>
@@ -39,6 +39,11 @@ export default function HBVCPage() {
           <TextTitle3D />
           {showInfo && <TrombosisInfo />}
         </Canvas>
+        {/* Botones de navegación */}
+        <div className={styles.controls}>
+          <button onClick={prevInfo}>←</button>
+          <button onClick={nextInfo}>→</button>
+        </div>
       </div>
     </section>
   );
