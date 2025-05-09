@@ -1,0 +1,80 @@
+/* Contenedor principal */
+.container {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    grid-template-columns: 1fr;
+    background-color: #f2d8c2;
+    align-items: center
+}
+
+.top_section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Título "Science Gateway */
+.title {
+    font-size: 2em;
+    font-weight: 600;
+    width: fit-content;
+    margin: 0;
+    color: #990000;
+    padding: 0.75rem 2rem;
+}
+
+/* Menú de navegación */
+.navigation_menu {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: fit-content;
+    margin: 0 3rem 0 auto;
+    padding: 0.75rem 2rem;
+}
+
+.navigation_menu ul {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem
+}
+
+.navigation_menu a {
+    text-decoration: none;
+    color: #BF5050;
+}
+
+.divider {
+    margin: 0;
+    padding: 0;
+    background-color: #bf7e78;
+}
+
+.bottom_section {
+    display: flex;
+}
+
+.bottom_section_container {
+    position: relative;
+    width: 300px;
+}
+
+.bottom_section_image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.bottom_section_title {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-40%, 180%);
+    z-index: 1;
+    margin: 0;
+    color: #990000;
+    font-size: 1.7em;
+    font-weight: 900;
+    padding: 0.25rem 0.5rem;
+    white-space: nowrap;
+}
