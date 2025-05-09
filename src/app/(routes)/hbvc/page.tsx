@@ -39,8 +39,7 @@ export default function HBVCPage() {
       <div className={styles.text}>
         <h2>Trombosis Esplénica</h2>
         <p>
-          La trombosis esplénica es una obstrucción de la vena esplénica causada por un coágulo de sangre.
-          Puede generar hipertensión portal segmentaria y está asociada a enfermedades como pancreatitis crónica o tumores abdominales.
+        La trombosis esplénica es una condición médica caracterizada por la formación de un coágulo en la vena esplénica, lo que puede comprometer la función del bazo y generar complicaciones sistémicas. Su diagnóstico y manejo requieren un enfoque multidisciplinario, considerando sus diversas causas y manifestaciones clínicas. A continuación, exploraremos sus aspectos clave, desde la fisiopatología hasta las opciones terapéuticas. Para avanzar, presiona las flechas de tu teclado o pantalla.
         </p>
       </div>
     </section>
