@@ -33,7 +33,7 @@ export default function AboutUs() {
                 <div className={styles.team_section_container}>
                     <TeamBlock name="Sebastian Hurtado" image="" />
                     <TeamBlock name="Brandon Vargas" image="" />
-                    <TeamBlock name="Gary Díaz" image="" />
+                    <TeamBlock name="Gary Trujillo" image="" />
                     <TeamBlock name="Juan Viedman" image="/assets/Viedman-photo.jpg" />
                 </div>
             </section>
