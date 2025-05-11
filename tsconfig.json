@@ -10,7 +10,7 @@
       ],
       "@config/*": [
         "config/*"
-      ],
+      ]
     },
     "target": "ES2020",
     "useDefineForClassFields": true,

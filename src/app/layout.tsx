@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { Poppins } from 'next/font/google';
-import Header from '@components/layout/Header/Header';
 import Footer from '@components/layout/Footer/Footer';
 
 
@@ -15,6 +14,7 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: 'Science Gateway',
   description: 'My app is a 3D website',
+  viewport: 'width=device-width, initial-scale=1',
 };
 
 export default function RootLayout({
@@ -25,7 +25,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={poppins.className}>
       <body>
-        <Header />
         <div id="root">{children}</div>
         <Footer />
       </body>

@@ -14,7 +14,7 @@ export const footerNavLinks = [
             'Trauma abdominal',
             'Trombosis esplénica',
             'Infarto esplénico',
-            'Infarto intestinal',
+            'Quiste esplénico',
         ]
     }
 ]
