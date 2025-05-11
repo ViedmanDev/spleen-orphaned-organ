@@ -2,13 +2,13 @@
 // src/components/SpotLightToModel.jsx
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { useHelper } from '@react-three/drei';
+//import { useHelper } from '@react-three/drei';
 
 import {
-  HemisphereLightHelper,
+ /* HemisphereLightHelper,
   PointLightHelper,
   SpotLightHelper,
-  DirectionalLightHelper,
+  DirectionalLightHelper, */
   MathUtils,
 } from 'three';
 
