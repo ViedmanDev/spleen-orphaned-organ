@@ -1,13 +1,17 @@
+"use client";
+
 import styles from "@styles/layout/Header.module.css";
 import DropdownMenu from "@components/ui/Dropdown/DropdownMenu";
 import { Divider } from "antd";
 import { DownOutlined } from "@ant-design/icons";
+import { routes, getRouteTitle } from "@config/routes.config";
+import { usePathname } from "next/navigation";
 
 const items = [
     {
         key: '1',
         label: (
-            <a href="" target="_blank" rel="noopener noreferrer">
+            <a href={routes.viedman} target="_blank" rel="noopener noreferrer">
                 Trauma abdominal
             </a>
         ),
@@ -15,7 +19,7 @@ const items = [
     {
         key: '2',
         label: (
-            <a href="" target="_blank" rel="noopener noreferrer">
+            <a href={routes.brandon} target="_blank" rel="noopener noreferrer">
                 Trombosis esplénica
             </a>
         ),
@@ -40,39 +44,36 @@ const items = [
 
 
 const Header = () => {
+
+    const pathname = usePathname();
+    const HeaderTitle = getRouteTitle(pathname);
+
     return (
         <header className={styles.container}>
             <div className={styles.top_section}>
                 <p className={styles.title}>SCIENCE <br /> GATEWAY</p>
                 <nav className={styles.navigation_menu}>
                     <ul>
-                        <li><a href="">HOME</a></li>
-                        <li><a href="">ABOUT US</a></li>
-                        <li><DropdownMenu icon={<DownOutlined /> } items={items}  label="DISEASES"/></li>
-                        <li><a href="">CURIOSITIES</a></li>
-                        <li><a href="">QUIZ</a></li>
-                        <li><a href="">PAGES</a></li>
+                        <li><a href={routes.home}>INICIO</a></li>
+                        <li><a href={routes.aboutUs}>SOBRE NOSOTROS</a></li>
+                        <li><DropdownMenu icon={<DownOutlined />} items={items} label="ENFERMEDADES" color="#BF5050"/></li>
+                        <li><a href={routes.curiosities}>CURIOSIDADES</a></li>
+                        <li><a href={routes.quiz}>QUIZ</a></li>
+                        <li><a href="#">MENÚ</a></li>
                     </ul>
                 </nav>
             </div>
             <Divider className={styles.divider} />
             <nav className={styles.bottom_section}>
-                <div className={styles.left_section}>
-                    <h1 className={styles.title_left_section}>WELCOME TO SCIENCE GATEWAY</h1>
-                    <h1 className={styles.subtitle_left_section}>EXPLORE THE <br />MICROSCOPIC <br />UNIVERSE OF YOUR <br />SPLEEN</h1>
-                    <p className={styles.text_left_section}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt illum soluta odit beatae nesciunt. Quas dolorum eveniet, doloribus totam unde quaerat laudantium, incidunt error cupiditate sapiente expedita? Doloribus, numquam. Ex.</p>
-                    <button className={styles.button_left_section}>
-                        ABOUT US
-                    </button>
-                </div>
-                <div className={styles.right_section}>
+                <div className={styles.bottom_section_container}>
                     <img
-                        src="/assets/logo.png"
+                        src="/assets/logo-difuminado.png"
                         alt="logo"
                         width={500}
                         height={500}
-                        className={styles.image_right_section}
+                        className={styles.bottom_section_image}
                     />
+                    <h1 className={styles.bottom_section_title}>{HeaderTitle}</h1>
                 </div>
             </nav>
         </header>
