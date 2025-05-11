@@ -3,23 +3,32 @@
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import styles from "@styles/routes/smh.module.css";
-import Cysts from "@components/ui/DiseasesModels/smh/Cysts";
+import { Cysts } from "@components/ui/DiseasesModels/smh/Cysts";
+import { Lights } from "@components/ui/DiseasesModels/smh/Lights";
+import { CystAnnotation } from "@components/ui/DiseasesModels/smh/annotations";
+
 
 export default function smh() {
   return (
     <>
       <section className={styles.about_section}>
         <div className={styles.about_section_left}>
-          <Canvas className={styles.viewer} camera={{ position: [2, 1, 1] }}>
-            <ambientLight intensity={0.5} />
-            <directionalLight position={[5, 5, 5]} intensity={1} />
-            <Cysts />
+          <Canvas
+            shadows
+            camera={{ position: [2, 1, 1], fov: 50 }}
+            className={styles.viewer}
+          >
+            
+            <Lights />
+            <pointLight position={[-5, 3, 2]} intensity={2.5} />
+            <Cysts/>
+            <CystAnnotation />
             <OrbitControls
               enableZoom={true}
               enableRotate={true}
               enablePan={true}
               minDistance={0.5} // Distancia mínima de acercamiento
-              maxDistance={0.7} // Distancia máxima de alejamiento
+              maxDistance={1} // Distancia máxima de alejamiento
               target={[0, 0, 0]} // Punto central de rotación
             />
           </Canvas>
