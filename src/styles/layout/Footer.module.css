@@ -166,3 +166,9 @@
     color: #bf5050;
 }
 
+/* ✅ NUEVA CLASE PARA EVITAR EL HYDRATION ERROR */
+.footer_contact_form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
