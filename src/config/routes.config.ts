@@ -4,17 +4,17 @@ export const routes = {
     home: '/',
     aboutUs: '/about-us',
     curiosities: '/curiosities',
-    trujillo: '/personal-diseases/gdtm',
+    gary: '/personal-diseases/gdtm',
     viedman: '/personal-diseases/jsvr',
     hurtado: '/personal-diseases/smh',
-    brandon: '/personal-diseases/aga',
+    brandon: '/personal-diseases/hbvc',
     quiz: '/quiz',
 };
 
 
 export const routeTitles: Record<string, string> = {
     '/personal-diseases/jsvr': 'TRAUMA ABDOMINAL',
-    '/personal-diseases/aga': 'AGA',
+    '/personal-diseases/hbvc': 'TROMBOSIS ESPLÉNICA',
     '/personal-diseases/smh': 'QUISTES ESPLÉNICOS',
     '/personal-diseases/gdtm': 'INFARTO ESPLÉNICO',
     '/about-us': 'SOBRE NOSOTROS',

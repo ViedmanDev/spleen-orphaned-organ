@@ -1,0 +1,65 @@
+/* src/styles/hbvc/HBVC.module.css */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: #F5F5F5; /* fondo claro general */
+    padding: 2rem;
+    font-family: sans-serif;
+  }
+  
+  .textBlock {
+    background-color: #F2D8C2;
+    color: #990000;
+    border-left: 6px solid #A63247;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .textBlock h2 {
+    color: #A63247;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .textBlock p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+  }
+  
+  .canvasContainer {
+    width: 100%;
+    height: 70vh;
+    border: 2px solid #BF5050;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative; 
+  }
+.controls {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  z-index: 10;
+}
+
+.controls button {
+  background-color: #A63247;
+  color: white;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  font-size: 1.25rem;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.2s ease;
+}
+
+.controls button:hover {
+  background-color: #BF5050;
+}
+
+
