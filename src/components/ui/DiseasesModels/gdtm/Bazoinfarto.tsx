@@ -4,12 +4,12 @@ import { useGLTF, Html, Environment, OrbitControls } from '@react-three/drei';
 import { useRef, useState, useEffect } from 'react';
 import { useThree } from '@react-three/fiber';
 import { JSX } from 'react';
-import { Group, Mesh, Vector3 } from 'three';
+import { Group, Vector3 } from 'three';
 
 function Bazoinfarto(props: JSX.IntrinsicElements['group']) {
     const group = useRef<Group>(null);
     const { nodes } = useGLTF('/organs-models/gdtm/bazoinfarto.glb');
-    const { camera, gl } = useThree();
+    const { camera } = useThree();
     const [cameraPosition, setCameraPosition] = useState(new Vector3(0, 1, 5));
 
     const handleKeyDown = (event: KeyboardEvent) => {

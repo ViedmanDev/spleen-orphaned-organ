@@ -8,7 +8,7 @@ const items = [
     {
         key: '1',
         label: (
-            <a href={routes.viedman} target="_blank" rel="noopener noreferrer">
+            <a href={routes.viedman} rel="noopener noreferrer">
                 Trauma abdominal
             </a>
         ),
@@ -16,7 +16,7 @@ const items = [
     {
         key: '2',
         label: (
-            <a href={routes.brandon} target="_blank" rel="noopener noreferrer">
+            <a href={routes.brandon} rel="noopener noreferrer">
                 Trombosis esplénica
             </a>
         ),
@@ -24,7 +24,7 @@ const items = [
     {
         key: '3',
         label: (
-            <a href="" target="_blank" rel="noopener noreferrer">
+            <a href={routes.gary} rel="noopener noreferrer">
                 Infarto esplénico
             </a>
         ),
@@ -32,7 +32,7 @@ const items = [
     {
         key: '4',
         label: (
-            <a href={routes.hurtado}  target="_blank" rel="noopener noreferrer">
+            <a href={routes.hurtado} rel="noopener noreferrer">
                 Quiste esplénico
             </a>
         ),

@@ -1,14 +1,14 @@
 'use client';
 
 import { Canvas } from '@react-three/fiber';
-import TrombosisModel from '../../../components/hbvc/TrombosisModel';
-import Floor from '../../../components/hbvc/Floor';
-import TextTitle3D from '../../../components/hbvc/TextTitle3D';
-import TrombosisInfo from '../../../components/hbvc/TrombosisInfo';
-import SpotLightToModel from '../../../components/hbvc/SpotLightToModel';
-import CameraFocus from '../../../components/hbvc/CameraFocus';
-import { useStore  } from '../../../components/hbvc/stores/stores';
-import styles from '../../../styles/hbvc/HBVC.module.css';
+import TrombosisModel from '../../../../components/hbvc/TrombosisModel';
+import Floor from '../../../../components/hbvc/Floor';
+import TextTitle3D from '../../../../components/hbvc/TextTitle3D';
+import TrombosisInfo from '../../../../components/hbvc/TrombosisInfo';
+import SpotLightToModel from '../../../../components/hbvc/SpotLightToModel';
+import CameraFocus from '../../../../components/hbvc/CameraFocus';
+import { useStore  } from '../../../../components/hbvc/stores/stores';
+import styles from '@styles/hbvc/HBVC.module.css';
 
 export default function HBVCPage() {
   const { showInfo, toggleInfo , nextInfo, prevInfo  } = useStore();
