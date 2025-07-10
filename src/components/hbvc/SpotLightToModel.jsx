@@ -2,13 +2,13 @@
 // src/components/SpotLightToModel.jsx
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-//import { useHelper } from '@react-three/drei';
+import { useHelper } from '@react-three/drei';
 
 import {
- /* HemisphereLightHelper,
+ HemisphereLightHelper,
   PointLightHelper,
   SpotLightHelper,
-  DirectionalLightHelper, */
+  DirectionalLightHelper, 
   MathUtils,
 } from 'three';
 
@@ -20,10 +20,10 @@ const SpotLightToModel = () => {
   const spotTargetRef = useRef();
 
   // Helpers visuales para desarrollo
-  /*useHelper(directionalLightRef, DirectionalLightHelper, 1, 'orange');
+  useHelper(directionalLightRef, DirectionalLightHelper, 1, 'orange');
   useHelper(spotLightRef, SpotLightHelper, 'red');
   useHelper(pointLightRef, PointLightHelper, 1, 'cyan');
-  useHelper(hemisphereLightRef, HemisphereLightHelper, 1);*/
+  useHelper(hemisphereLightRef, HemisphereLightHelper, 1);
 
   // Movimiento suave de luz direccional
   useFrame((state) => {
@@ -52,6 +52,9 @@ const SpotLightToModel = () => {
         position={[0, 5, 5]}
         intensity={0.3}
         castShadow
+        shadow-mapSize-width={2048}
+        shadow-mapSize-height={2048}
+        shadow-radius={2} // suaviza el borde
       />
 
       {/* Luz puntual decorativa (opcional, tenue) */}
@@ -73,6 +76,8 @@ const SpotLightToModel = () => {
         intensity={12}
         penumbra={0.5}
         castShadow
+        shadow-mapSize-width={1024}
+        shadow-mapSize-height={1024}
       />
       {/* Punto invisible hacia donde apunta el reflector */}
       <object3D ref={spotTargetRef} position={[0, 0.8, 0]} />

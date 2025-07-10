@@ -7,14 +7,14 @@ export const routes = {
     vargas: '/personal-diseases/gdtm',
     viedman: '/personal-diseases/jsvr',
     hurtado: '/personal-diseases/smh',
-    brandon: '/personal-diseases/hbvc',
+    brandon: '/hbvc',
     quiz: '/quiz',
 };
 
 
 export const routeTitles: Record<string, string> = {
     '/personal-diseases/jsvr': 'TRAUMA ABDOMINAL',
-    '/personal-diseases/hbvc': 'TROMBOSIS ESPLENICA',
+    '/hbvc': 'TROMBOSIS ESPLENICA',
     '/personal-diseases/smh': 'QUISTES ESPLÉNICOS',
     '/personal-diseases/gdtm': 'TROMBOSIS ESPLÉNICA',
     '/about-us': 'SOBRE NOSOTROS',
