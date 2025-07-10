@@ -14,7 +14,7 @@ export const routes = {
 
 export const routeTitles: Record<string, string> = {
     '/personal-diseases/jsvr': 'TRAUMA ABDOMINAL',
-    '/hbvc': 'TROMBOSIS ESPLENICA',
+    '/personal-diseases/hbvc': 'TROMBOSIS ESPLENICA',
     '/personal-diseases/smh': 'QUISTES ESPLÉNICOS',
     '/personal-diseases/gdtm': 'TROMBOSIS ESPLÉNICA',
     '/about-us': 'SOBRE NOSOTROS',
