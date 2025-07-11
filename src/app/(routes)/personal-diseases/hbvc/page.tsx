@@ -8,7 +8,7 @@ import TrombosisInfo from '../../../../components/hbvc/TrombosisInfo';
 import SpotLightToModel from '../../../../components/hbvc/SpotLightToModel';
 import CameraFocus from '../../../../components/hbvc/CameraFocus';
 import { useStore  } from '../../../../components/hbvc/stores/stores';
-import styles from '@styles/hbvc/HBVC.module.css';
+import styles from "@styles/routes/hbvc.module.css"
 
 export default function HBVCPage() {
   const { showInfo, toggleInfo , nextInfo, prevInfo  } = useStore();
