@@ -139,13 +139,6 @@ function AccidenteModel({ softShadows = true, ...props }: AccidenteModelProps) {
                         minWidth: 120
                     }}>
                         Accidente
-                        <div style={{
-                            fontWeight: 'normal',
-                            fontSize: '0.95rem',
-                            marginTop: 4,
-                            color: '#444'
-                        }}>
-                        </div>
                     </div>
                 </Html>
                 {nodes.Scene?.children.map((child: any) => (
