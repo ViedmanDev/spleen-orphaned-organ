@@ -1,54 +1,88 @@
-import { Html } from '@react-three/drei';
-import { useStore } from './stores/stores';
-import { infoTexts } from './stores/infotext';
+/* eslint-disable react/no-unknown-property */
+// src/components/SpotLightToModel.jsx
+import { useRef } from 'react';
+import { useFrame } from '@react-three/fiber';
+import { useHelper } from '@react-three/drei';
 
-const TrombosisInfo = () => {
-  const { infoIndex } = useStore();
-  const info = infoTexts[infoIndex];
+import {
+  HemisphereLightHelper,
+  PointLightHelper,
+  SpotLightHelper,
+  DirectionalLightHelper,
+  MathUtils,
+} from 'three';
+
+const SpotLightToModel = () => {
+  const directionalLightRef = useRef();
+  const pointLightRef = useRef();
+  const spotLightRef = useRef();
+  const hemisphereLightRef = useRef();
+  const spotTargetRef = useRef();
+
+  // Helpers visuales para desarrollo
+  useHelper(directionalLightRef, DirectionalLightHelper, 1, 'orange');
+  useHelper(spotLightRef, SpotLightHelper, 'red');
+  useHelper(pointLightRef, PointLightHelper, 1, 'cyan');
+  useHelper(hemisphereLightRef, HemisphereLightHelper, 1);
+
+  // Movimiento suave de luz direccional
+  useFrame((state) => {
+    const t = state.clock.getElapsedTime();
+    if (directionalLightRef.current) {
+      directionalLightRef.current.position.x = MathUtils.lerp(-2, 2, (Math.cos(t) + 1) / 2);
+      directionalLightRef.current.target.updateMatrixWorld();
+    }
+  });
 
   return (
-    <Html position={[0, 1.2, 0]} center distanceFactor={5} zIndexRange={[100, 0]}>
-      <div style={{
-        backgroundColor: 'rgba(0, 0, 0, 0.85)',
-        padding: '1.5rem',
-        borderRadius: '12px',
-        color: '#F2D8C2',
-        width: '480px',
-        maxHeight: '320px',
-        overflowY: 'auto',
-        display: 'flex',
-        flexDirection: 'column',
-        fontFamily: 'sans-serif',
-        boxSizing: 'border-box',
-        justifyContent: 'flex-start',
-      }}>
-        {info.image && (
-          <img
-            src={info.image}
-            alt={info.title}
-            style={{
-              width: '100%',
-              height: '160px',
-              objectFit: 'cover',
-              borderRadius: '8px',
-              marginBottom: '1rem',
-              border: '2px solid #BF7E78',
-            }}
-          />
-        )}
-        <div>
-          <h3 style={{
-            margin: '0 0 0.5rem 0',
-            fontSize: '1.4rem',
-            color: '#BF5050',
-          }}>{info.title}</h3>
-          <p style={{ margin: 0, fontSize: '1.05rem', lineHeight: 1.5 }}>
-            {info.content}
-          </p>
-        </div>
-      </div>
-    </Html>
+    <>
+      {/* Luz ambiente tenue para mantener el ambiente oscuro */}
+      <ambientLight color="#222222" intensity={0.3} />
+
+      {/* Luz hemisférica opcional para leve ambientación */}
+      <hemisphereLight
+        ref={hemisphereLightRef}
+        args={['#222244', '#000000', 0.2]} // skyColor, groundColor, intensity
+      />
+
+      {/* Luz direccional muy suave */}
+      <directionalLight
+        ref={directionalLightRef}
+        color="white"
+        position={[0, 5, 5]}
+        intensity={0.3}
+        castShadow
+        shadow-mapSize-width={2048}
+        shadow-mapSize-height={2048}
+        shadow-radius={2} // suaviza el borde
+      />
+
+      {/* Luz puntual decorativa (opcional, tenue) */}
+      <pointLight
+        ref={pointLightRef}
+        color="cyan"
+        position={[1, 2, -2]}
+        intensity={0.3}
+      />
+
+      {/* Reflector fuerte sobre el bazo */}
+      <spotLight
+        ref={spotLightRef}
+        color="#F3E6F5"
+        position={[0, 2, 0]}
+        target={spotTargetRef.current}
+        angle={Math.PI / 6}
+        distance={10}
+        intensity={12}
+        penumbra={0.5}
+        castShadow
+        shadow-mapSize-width={1024}
+        shadow-mapSize-height={1024}
+      />
+      {/* Punto invisible hacia donde apunta el reflector */}
+      <object3D ref={spotTargetRef} position={[0, 0.8, 0]} />
+    </>
   );
 };
 
-export default TrombosisInfo;
+export default SpotLightToModel;
