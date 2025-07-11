@@ -138,14 +138,13 @@ function AccidenteModel({ softShadows = true, ...props }: AccidenteModelProps) {
                         textAlign: 'center',
                         minWidth: 120
                     }}>
-                        Accident Injury
+                        Accidente
                         <div style={{
                             fontWeight: 'normal',
                             fontSize: '0.95rem',
                             marginTop: 4,
                             color: '#444'
                         }}>
-                            3D model of spleen trauma caused by high-energy accidents.
                         </div>
                     </div>
                 </Html>
