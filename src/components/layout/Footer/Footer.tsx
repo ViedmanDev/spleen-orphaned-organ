@@ -85,7 +85,7 @@ const Footer = () => {
                             type='email'
                             placeholder='Correo electrónico'
                             className={styles.footer_contact_input}
-                            value={email}
+                            value={email || ''}
                             onChange={(e) => setEmail(e.target.value)}
                             required
                         />

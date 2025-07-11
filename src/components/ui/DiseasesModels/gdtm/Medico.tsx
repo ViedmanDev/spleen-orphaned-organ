@@ -6,9 +6,9 @@ import { useThree, useFrame } from '@react-three/fiber';
 import { JSX } from 'react';
 import { Group, Vector3 } from 'three';
 
-function Bazoinfarto(props: JSX.IntrinsicElements['group']) {
+function Medico(props: JSX.IntrinsicElements['group']) {
     const group = useRef<Group>(null);
-    const { nodes } = useGLTF('/organs-models/gdtm/bazoinfarto.glb');
+    const { nodes } = useGLTF('/organs-models/gdtm/medico.glb');
     const { camera } = useThree();
     const [cameraPosition, setCameraPosition] = useState(new Vector3(0, 1, 5));
     const [rotationY, setRotationY] = useState(0);
@@ -72,7 +72,7 @@ function Bazoinfarto(props: JSX.IntrinsicElements['group']) {
             <Environment background preset="studio" />
             <group ref={group} {...props} dispose={null}>
                 {nodes.Scene?.children.map((child: any) =>
-                    child.name === 'bazoinfarto' ? (
+                    child.name === 'medico' ? (
                         <mesh
                             key={child.uuid}
                             castShadow
@@ -89,8 +89,6 @@ function Bazoinfarto(props: JSX.IntrinsicElements['group']) {
     );
 }
 
-export default Bazoinfarto;
-useGLTF.preload('/organs-models/gdtm/bazoinfarto.glb');
-
-
+export default Medico;
+useGLTF.preload('/organs-models/gdtm/medico.glb');
 
