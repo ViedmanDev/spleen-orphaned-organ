@@ -24,7 +24,7 @@ const SpotLightToModel = () => {
   useHelper(spotLightRef, SpotLightHelper, 'red');
   useHelper(pointLightRef, PointLightHelper, 1, 'cyan');
   useHelper(hemisphereLightRef, HemisphereLightHelper, 1);
-
+  
   // Movimiento suave de luz direccional
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
