@@ -121,8 +121,11 @@ function AccidenteModel({ softShadows = true, ...props }: AccidenteModelProps) {
                 }}
                 onClick={(e) => {
                     e.stopPropagation();
-                    setClicked(!clicked);
-                    console.log('Modelo de accidente clickeado:', clicked ? 'deseleccionado' : 'seleccionado');
+                    setClicked((prevClicked) => {
+                        const newClicked = !prevClicked;
+                        console.log('Modelo de accidente clickeado:', newClicked ? 'seleccionado' : 'deseleccionado');
+                        return newClicked;
+                    });
                 }}
             >
                 {/* 3D HTML element above the model */}
