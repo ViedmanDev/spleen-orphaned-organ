@@ -13,7 +13,7 @@ function AbdominalTrauma(props: AbdominalTraumaProps) {
     const [hovered, setHovered] = useState(false);
     const [clicked, setClicked] = useState(false);
     const [fastRotate, setFastRotate] = useState(false);
-    const fastRotateTimeout = useRef<NodeJS.Timeout | null>(null);
+    const fastRotateTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
     const groupRef = useRef<THREE.Group>(null);
 
     // Evento de teclado: tecla 'r' para rotar rápido
