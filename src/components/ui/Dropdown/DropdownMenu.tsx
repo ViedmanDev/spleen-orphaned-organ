@@ -16,16 +16,18 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({
     color = "#f5f5f5"
 }) => {
     return (
-        <Dropdown menu={{ items }} className={styles.dropdownMenu}>
-            <div style={{ color }}>
-                <Space className={styles.dropdownMenu__space}>
-                    {icon}
+        <Dropdown 
+            menu={{ items }} 
+            overlayClassName={styles.dropdownOverlay}
+        >
+            <a className={styles.dropdownTrigger} style={{ color }}>
+                <Space>
                     {label}
+                    {icon}
                 </Space>
-            </div>
+            </a>
         </Dropdown>
     );
 }
 
 export default DropdownMenu;
-

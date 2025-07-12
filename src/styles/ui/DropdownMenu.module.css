@@ -1,5 +1,19 @@
-.dropdownMenu {
-    display: flex;
-    justify-content: center;
-    width: fit-content;
+/* Estilo para el trigger del dropdown */
+.dropdownTrigger {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+/* Asegura que el menú desplegable tenga el mismo ancho que el trigger */
+.dropdownOverlay {
+  min-width: 200px !important;
+}
+
+/* Alinea el ícono con el texto */
+.dropdownTrigger .ant-space {
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }

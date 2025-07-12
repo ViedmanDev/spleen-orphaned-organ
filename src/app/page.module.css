@@ -1,6 +1,6 @@
 .info_box {
     position: relative;
-    transform: translateY(-30%);
+    transform: translateY(-40%);
     padding: 1rem;
 }
 
@@ -14,9 +14,9 @@
 .card {
     background-color: #c45656;
     color: white;
-    padding: 2rem;
+    padding: 1.4rem;
     flex: 1 1 30%;
-    max-width: 450px;
+    max-width: 380px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -25,18 +25,20 @@
 .card h3 {
     margin-top: 0;
     font-weight: bold;
+    font-size: 0.9rem;
 }
 
 .card p {
-    margin: 1rem 0;
+    margin: 0.5rem 0;
+    font-size: 0.8rem;
 }
 
 .mid_card {
     background-color: #BF7E78;
     color: white;
-    padding: 2rem;
+    padding: 1.4rem;
     flex: 1 1 30%;
-    max-width: 450px;
+    max-width: 380px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -45,10 +47,12 @@
 .mid_card h3 {
     margin-top: 0;
     font-weight: bold;
+    font-size: 0.9rem;
 }
 
 .mid_card p {
     margin: 1rem 0;
+    font-size: 0.8rem;
 }
 
 .arrow-icon {
