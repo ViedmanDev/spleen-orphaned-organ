@@ -9,6 +9,8 @@ import SpotLightToModel from '../../../../components/hbvc/SpotLightToModel';
 import CameraFocus from '../../../../components/hbvc/CameraFocus';
 import { useStore  } from '../../../../components/hbvc/stores/stores';
 import styles from "@styles/routes/hbvc.module.css"
+import SecondModel from '../../../../components/hbvc/SecondModel';
+
 
 export default function HBVCPage() {
   const { showInfo, toggleInfo , nextInfo, prevInfo  } = useStore();
@@ -35,6 +37,7 @@ export default function HBVCPage() {
           <directionalLight castShadow position={[2, 5, 2]} />
           <SpotLightToModel />
           <TrombosisModel position={[0, 0, 0]} scale={5} />
+          <SecondModel position={[3, 0, -3]}  />
           <Floor />
           <TextTitle3D />
           {showInfo && <TrombosisInfo />}

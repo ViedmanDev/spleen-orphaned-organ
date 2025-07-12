@@ -3,12 +3,11 @@
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { useHelper } from '@react-three/drei';
-
 import {
- HemisphereLightHelper,
+  HemisphereLightHelper,
   PointLightHelper,
   SpotLightHelper,
-  DirectionalLightHelper, 
+  DirectionalLightHelper,
   MathUtils,
 } from 'three';
 
@@ -19,53 +18,40 @@ const SpotLightToModel = () => {
   const hemisphereLightRef = useRef();
   const spotTargetRef = useRef();
 
-  // Helpers visuales para desarrollo
+  const secondSpotRef = useRef();
+  const secondTargetRef = useRef();
+
+  // Helpers visuales (solo durante desarrollo)
   useHelper(directionalLightRef, DirectionalLightHelper, 1, 'orange');
   useHelper(spotLightRef, SpotLightHelper, 'red');
   useHelper(pointLightRef, PointLightHelper, 1, 'cyan');
   useHelper(hemisphereLightRef, HemisphereLightHelper, 1);
-  
-  // Movimiento suave de luz direccional
+  useHelper(secondSpotRef, SpotLightHelper, 'white');
+
+  // Movimiento suave de la luz direccional
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
     if (directionalLightRef.current) {
       directionalLightRef.current.position.x = MathUtils.lerp(-2, 2, (Math.cos(t) + 1) / 2);
       directionalLightRef.current.target.updateMatrixWorld();
     }
+    if (secondSpotRef.current) {
+      secondSpotRef.current.target.updateMatrixWorld();
+    }
   });
 
   return (
     <>
-      {/* Luz ambiente tenue para mantener el ambiente oscuro */}
+      {/* Luz ambiente tenue para mantener atmósfera */}
       <ambientLight color="#222222" intensity={0.3} />
 
-      {/* Luz hemisférica opcional para leve ambientación */}
+      {/* Luz hemisférica */}
       <hemisphereLight
         ref={hemisphereLightRef}
-        args={['#222244', '#000000', 0.2]} // skyColor, groundColor, intensity
+        args={['#222244', '#000000', 0.2]}
       />
 
-      {/* Luz direccional muy suave */}
-      <directionalLight
-        ref={directionalLightRef}
-        color="white"
-        position={[0, 5, 5]}
-        intensity={0.3}
-        castShadow
-        shadow-mapSize-width={2048}
-        shadow-mapSize-height={2048}
-        shadow-radius={2} // suaviza el borde
-      />
-
-      {/* Luz puntual decorativa (opcional, tenue) */}
-      <pointLight
-        ref={pointLightRef}
-        color="cyan"
-        position={[1, 2, -2]}
-        intensity={0.3}
-      />
-
-      {/* Reflector fuerte sobre el bazo */}
+      {/* Reflector sobre el bazo */}
       <spotLight
         ref={spotLightRef}
         color="#F3E6F5"
@@ -79,8 +65,23 @@ const SpotLightToModel = () => {
         shadow-mapSize-width={1024}
         shadow-mapSize-height={1024}
       />
-      {/* Punto invisible hacia donde apunta el reflector */}
       <object3D ref={spotTargetRef} position={[0, 0.8, 0]} />
+
+      {/* Reflector para el segundo modelo */}
+      <spotLight
+        ref={secondSpotRef}
+        color="#F3E6F5"
+        position={[0, 3, 0]} // por encima del segundo modelo
+        angle={Math.PI / 6}
+        castShadow
+        distance={10}
+        intensity={12}
+        penumbra={0.5}
+        shadow-mapSize-width={1024}
+        shadow-mapSize-height={1024}
+        target={secondTargetRef.current}
+      />
+      <object3D ref={secondTargetRef} position={[2, 0.8, -2]} />
     </>
   );
 };
