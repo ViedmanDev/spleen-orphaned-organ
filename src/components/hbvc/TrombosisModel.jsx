@@ -7,7 +7,7 @@ import { useStore } from './stores/stores';
 const TrombosisModel = (props) => {
   const gltf = useGLTF('/models/hbvc/trombosis.glb');
   const modelRef = useRef();
-  const { toggleInfo } = useStore();
+  const { toggleInfo, setInfoIndex, setModelFocus, setInfoPosition } = useStore();
 
   useEffect(() => {
     gltf.scene.traverse((child) => {
@@ -32,7 +32,10 @@ const TrombosisModel = (props) => {
       {...props}
       onClick={(e) => {
         e.stopPropagation();
-        toggleInfo();
+        setInfoIndex(0);         // mostrar contenido del modelo principal
+        setModelFocus('main');   // enfocar cámara en el centro
+        setInfoPosition([0, 1.2, 0]); 
+        toggleInfo();            // mostrar/ocultar texto
       }}
     />
   );
