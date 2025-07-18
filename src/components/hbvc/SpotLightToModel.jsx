@@ -1,16 +1,17 @@
 /* eslint-disable react/no-unknown-property */
-// src/components/SpotLightToModel.jsx
+// src/components/hbvc/SpotLightToModel.jsx
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { useHelper } from '@react-three/drei';
+// import { useHelper } from '@react-three/drei'; // Descomentar si se usan helpers
 
-import {
-  HemisphereLightHelper,
-  PointLightHelper,
-  SpotLightHelper,
-  DirectionalLightHelper,
-  MathUtils,
-} from 'three';
+// import {
+//   HemisphereLightHelper,
+//   PointLightHelper,
+//   SpotLightHelper,
+//   DirectionalLightHelper,
+// } from 'three';
+
+import { MathUtils } from 'three';
 
 const SpotLightToModel = () => {
   const directionalLightRef = useRef();
@@ -19,11 +20,13 @@ const SpotLightToModel = () => {
   const hemisphereLightRef = useRef();
   const spotTargetRef = useRef();
 
-  // Helpers visuales para desarrollo
-  /*useHelper(directionalLightRef, DirectionalLightHelper, 1, 'orange');
+  // Helpers visuales para desarrollo (descomentar si es necesario)
+  /*
+  useHelper(directionalLightRef, DirectionalLightHelper, 1, 'orange');
   useHelper(spotLightRef, SpotLightHelper, 'red');
   useHelper(pointLightRef, PointLightHelper, 1, 'cyan');
-  useHelper(hemisphereLightRef, HemisphereLightHelper, 1);*/
+  useHelper(hemisphereLightRef, HemisphereLightHelper, 1);
+  */
 
   // Movimiento suave de luz direccional
   useFrame((state) => {
