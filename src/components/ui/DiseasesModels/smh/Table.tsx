@@ -4,21 +4,21 @@ import * as THREE from "three";
 import { useStore } from "./stores/stores";
 import { useThree, ThreeEvent } from "@react-three/fiber";
 
-type HumanProps = {
+type TableProps = {
   position?: THREE.Vector3 | [number, number, number];
   rotation?: THREE.Euler | [number, number, number];
   scale?: number;
   initialScale?: number;
 };
 
-const Human = ({
+const OperatingTable = ({
   position = [0, 0, 0],
   rotation = [0, 0, 0],
   scale = 1,
   initialScale = 1,
-}: HumanProps) => {
+}: TableProps) => {
   const group = useRef<THREE.Group>(null);
-  const gltf = useGLTF("/organs-models/smh/human.glb");
+  const gltf = useGLTF("/organs-models/smh/operating-table.glb");
   const { toggleInfo } = useStore();
   const { camera } = useThree();
 
@@ -27,8 +27,8 @@ const Human = ({
   const [currentScale, setCurrentScale] = useState(initialScale);
 
   // Límites de escala
-  const MIN_SCALE = 0.5;
-  const MAX_SCALE = 1;
+  const MIN_SCALE = 1;
+  const MAX_SCALE = 5;
 
   // Controles de teclado (MANTENIDO COMO ESTABA)
   useEffect(() => {
@@ -79,7 +79,7 @@ const Human = ({
           e.stopPropagation();
           setShowInfo(!showInfo);
           toggleInfo();
-          camera.position.set(0, 0, 5);
+          camera.position.set(0, 2, 5);
           camera.lookAt(0, 0, 0);
         }}
       />
@@ -95,7 +95,7 @@ const Human = ({
             <Center>
               <Text3D
                 font="/fonts/alice.json"
-                size={3}
+                size={20}
                 height={0.1}
                 curveSegments={12}
                 bevelEnabled
@@ -104,7 +104,7 @@ const Human = ({
                 bevelOffset={0}
                 bevelSegments={5}
               >
-                VOMITO
+                MESA DE OPERACIONES
                 <meshStandardMaterial color="#a63247" />
               </Text3D>
             </Center>
@@ -114,7 +114,7 @@ const Human = ({
 
       {/* Indicador de hover (MANTENIDO COMO ESTABA) */}
       {isHovered && !showInfo && (
-        <mesh position={[0, 7, 0]}>
+        <mesh position={[0, 10, 0]}>
           <ringGeometry args={[0.8, 0.85, 32]} />
           <meshStandardMaterial
             color="#a63372"
@@ -128,5 +128,5 @@ const Human = ({
   );
 };
 
-useGLTF.preload("/organs-models/smh/human.glb");
-export default Human;
+useGLTF.preload("/organs-models/smh/operating-table.glb");
+export default OperatingTable;
