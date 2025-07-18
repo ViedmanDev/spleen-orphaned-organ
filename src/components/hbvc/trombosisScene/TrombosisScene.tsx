@@ -5,7 +5,7 @@ import TrombosisModel from '../TrombosisModel';
 import TextTitle3D from '../TextTitle3D';
 import TrombosisInfo from '../TrombosisInfo';
 import SpotLightToModel from '../SpotLightToModel';
-import CameraFocus from '../CameraFocus';
+import CameraFocusTrombosis from './CameraFocusTrombosis';
 import Scene from '../scene/Scene';
 
 import { Stars, Sky } from '@react-three/drei';
@@ -56,7 +56,7 @@ export default function TrombosisScene() {
         color="#003366"
         castShadow
       />
-      <CameraFocus />
+      <CameraFocusTrombosis />
       <TrombosisModel position={[0, 0, 0]} scale={5} onClick={toggleTInfo} />
       <TextTitle3D />
       {tShowInfo && <TrombosisInfo />}
