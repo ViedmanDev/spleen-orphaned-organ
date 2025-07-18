@@ -3,8 +3,10 @@ import { useStore } from './stores/stores';
 import { infoTexts } from './stores/infotext';
 
 const TrombosisInfo = () => {
-  const { infoIndex, infoPosition } = useStore();
-  const info = infoTexts[infoIndex];
+  const { tInfoIndex, infoPosition } = useStore(); // Cambiado a tInfoIndex
+  
+  // Seleccionar el texto de info o usar el primero como fallback
+  const info = infoTexts[tInfoIndex] || infoTexts[0];
 
   return (
     <Html
@@ -23,10 +25,11 @@ const TrombosisInfo = () => {
         fontFamily: 'sans-serif',
         boxSizing: 'border-box',
       }}>
-        {info.image && (
+        {/* Verificación segura de la imagen */}
+        {info?.image && (
           <img
             src={info.image}
-            alt={info.title}
+            alt={info.title || 'Imagen descriptiva'}
             style={{
               width: '100%',
               height: '160px',
@@ -41,9 +44,9 @@ const TrombosisInfo = () => {
           margin: '0 0 0.5rem 0',
           fontSize: '1.4rem',
           color: '#BF5050'
-        }}>{info.title}</h3>
+        }}>{info?.title || 'Información'}</h3>
         <p style={{ margin: 0, fontSize: '1.05rem', lineHeight: 1.5 }}>
-          {info.content}
+          {info?.content || 'Contenido no disponible'}
         </p>
       </div>
     </Html>
