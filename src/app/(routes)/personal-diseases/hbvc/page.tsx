@@ -5,6 +5,8 @@ import { useStore } from '../../../../components/hbvc/stores/stores';
 import styles from "@styles/routes/hbvc.module.css";
 import TrombosisScene from '../../../../components/hbvc/trombosisScene/TrombosisScene';
 import DiagnosisScene from '../../../../components/hbvc/DiagnosisScene/DiagnosisScene';
+import TreatmentScene from '../../../../components/hbvc/TreatmentScene/TreatmentScene';
+
 
 export default function HBVCPage() {
   const { nextInfo, prevInfo } = useStore();
@@ -57,6 +59,39 @@ export default function HBVCPage() {
           <p className={styles.about_section_text}>
             El diagnóstico temprano es crucial para prevenir complicaciones como infarto esplénico o hipertensión portal.
           </p>
+        </div>
+      </section>
+      <section className={styles.about_section}>
+        <div className={styles.about_section_left}>
+          <div className={styles.canvasContainer}>
+            <TreatmentScene />
+          </div>
+        </div>
+
+        <div className={styles.about_section_right}>
+          <h1 className={styles.about_section_title}>TRATAMIENTOS</h1>
+          <p className={styles.about_section_text}>
+            El manejo de la trombosis esplénica depende de la causa subyacente y la gravedad:
+          </p>
+          
+          <h2 className={styles.subtitle}>Tratamientos médicos</h2>
+          <ul className={styles.infoList}>
+            <li><strong>Anticoagulantes:</strong> Heparina seguida de warfarina o DOACs por 3-6 meses</li>
+            <li><strong>Antibióticos:</strong> Si hay infección subyacente</li>
+            <li><strong>Analgesia:</strong> Para el manejo del dolor</li>
+          </ul>
+          
+          <h2 className={styles.subtitle}>Intervenciones</h2>
+          <ul className={styles.infoList}>
+            <li><strong>Trombólisis:</strong> En casos seleccionados</li>
+            <li><strong>Angioplastia:</strong> Para trombosis extensas</li>
+          </ul>
+          
+          <h2 className={styles.subtitle}>Tratamiento quirúrgico</h2>
+          <ul className={styles.infoList}>
+            <li><strong>Esplenectomía:</strong> En casos de infarto masivo o ruptura</li>
+            <li><strong>Derivación esplenorrenal:</strong> Para hipertensión portal</li>
+          </ul>
         </div>
       </section>
     </main>
