@@ -35,7 +35,6 @@
     text-align: justify;
 }
 
-
 .section_title {
     font-size: 1.5rem;
     color: #BF5050;
@@ -58,13 +57,22 @@
     padding: 1rem;
 }
 
-
 .canvas_container {
     position: relative;
     width: 100%;
     height: 100%;
+    background-color: #BF7E78;
 }
 
+/* ✅ Estilo del canvas corregido para evitar el error de build */
+.canvas_container :global(canvas) {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+    background-color: transparent !important;
+}
+
+/* Botón "Más info" */
 .fixed_button {
     position: absolute;
     top: 1rem;

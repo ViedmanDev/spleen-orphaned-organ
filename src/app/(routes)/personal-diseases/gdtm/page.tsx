@@ -4,6 +4,7 @@ import { Canvas } from '@react-three/fiber';
 import styles from '@styles/routes/gdtm.module.css';
 import Bazoinfarto from '@components/ui/DiseasesModels/gdtm/Bazoinfarto';
 import Medico from '@components/ui/DiseasesModels/gdtm/Medico';
+import Medicina from '@components/ui/DiseasesModels/gdtm/medicina';
 
 export default function GDTM() {
     return (
@@ -73,10 +74,14 @@ export default function GDTM() {
             <div className={styles.model_info_row}>
                 <div className={styles.model_column}>
                     <div className={styles.canvas_container}>
-                        <p className={styles.placeholder_text}>[ Modelo 3D del tratamiento próximamente ]</p>
+                        <Canvas camera={{ position: [0, 0, 5.5] }}>
+                            <ambientLight intensity={0.5} />
+                            <directionalLight position={[5, 5, 5]} intensity={1} />
+                            <Medicina />
+                        </Canvas>
                         <button
                             className={styles.fixed_button}
-                            onClick={() => alert('Esta sección mostrará una simulación del tratamiento en 3D.')}
+                            onClick={() => alert('Simulación del tratamiento aplicado al bazo.')}
                         >
                             Más info
                         </button>
@@ -89,7 +94,6 @@ export default function GDTM() {
                     </p>
                     <p className={styles.info_text}>
                         Se recomienda seguimiento médico, control de enfermedades subyacentes y monitoreo por imágenes.
-                        Este espacio representará visualmente cómo los tratamientos afectan al órgano y su recuperación.
                     </p>
                 </div>
             </div>
