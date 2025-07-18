@@ -1,7 +1,6 @@
 // app/(routes)/personal-diseases/hbvc/page.tsx
 'use client';
 
-import { useStore } from '../../../../components/hbvc/stores/stores';
 import styles from "@styles/routes/hbvc.module.css";
 import TrombosisScene from '../../../../components/hbvc/trombosisScene/TrombosisScene';
 import DiagnosisScene from '../../../../components/hbvc/DiagnosisScene/DiagnosisScene';
@@ -9,7 +8,6 @@ import TreatmentScene from '../../../../components/hbvc/TreatmentScene/Treatment
 
 
 export default function HBVCPage() {
-  const { nextInfo, prevInfo } = useStore();
 
   return (
     <main className={styles.mainContainer}>
@@ -18,10 +16,6 @@ export default function HBVCPage() {
         <div className={styles.about_section_left}>
           <div className={styles.canvasContainer}>
             <TrombosisScene />
-          </div>
-          <div className={styles.controls}>
-            <button onClick={prevInfo}>← Anterior</button>
-            <button onClick={nextInfo}>Siguiente →</button>
           </div>
         </div>
 
