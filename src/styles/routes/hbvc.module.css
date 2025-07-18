@@ -1,5 +1,3 @@
-/* src/styles/hbvc/HBVC.module.css */
-
 .mainContainer {
     display: flex;
     flex-direction: column;
@@ -89,4 +87,22 @@
     .about_section_right {
         width: 100%;
     }
+}
+
+.infoList {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.infoList li {
+  margin-bottom: 0.5rem;
+  color: #990000;
+}
+
+.infoList strong {
+  color: #A63247;
+}
+
+.about_section:not(:last-child) {
+  margin-bottom: 3rem;
 }

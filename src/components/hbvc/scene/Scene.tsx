@@ -12,7 +12,6 @@ type SceneProps = {
   onPointerMissed?: () => void;
   lights?: ReactNode;
   floor?: boolean;
-  showControls?: boolean;
 };
 
 export default function Scene({
@@ -22,7 +21,6 @@ export default function Scene({
   onPointerMissed,
   lights,
   floor = true,
-  showControls = false,
 }: SceneProps) {
   const defaultLights = (
     <>
