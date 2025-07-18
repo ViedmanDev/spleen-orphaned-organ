@@ -1,11 +1,12 @@
 'use client';
 
+import { Group } from 'three'; // Añade esta importación
 import { useGLTF } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { useRef } from 'react';
 
 export default function DiagnosisModel(props: any) {
-  const group = useRef();
+  const group = useRef<Group>(null); 
   const { scene } = useGLTF('/models/hbvc/Diagnosis.glb');
 
   // Rotación automática opcional
