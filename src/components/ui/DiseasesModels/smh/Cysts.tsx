@@ -39,7 +39,7 @@ export function Cysts({
         e.preventDefault();
 
         setCurrentScale((s) => {
-          if (e.key === "ArrowUp" || e.key === "+") return Math.min(s + 0.1, 2);
+          if (e.key === "ArrowUp" || e.key === "+") return Math.min(s + 0.1, 1);
           if (e.key === "ArrowDown" || e.key === "-")
             return Math.max(s - 0.1, 0.5);
           return s;
