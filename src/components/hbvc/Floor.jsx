@@ -15,6 +15,8 @@ const Floor = () => {
   });
 
   return (
+    <mesh rotation-x={-Math.PI / 2} position-y={-1}>
+      {/* eslint-disable-next-line react/no-unknown-property */}
     <mesh rotation-x={-Math.PI / 2} position-y={-1} receiveShadow>
       <planeGeometry args={[10, 10]} />
       <meshStandardMaterial {...floorTexture} />

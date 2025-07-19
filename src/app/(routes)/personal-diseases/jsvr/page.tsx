@@ -7,19 +7,15 @@ import AbdominalTrauma from "@components/ui/DiseasesModels/jsvr/AbdominalTrauma"
 import AccidenteModel from "@components/ui/DiseasesModels/jsvr/AccidenteModel"
 import CirugiaModel from "@components/ui/DiseasesModels/jsvr/CirugiaModel"
 
+
 export default function jsvr() {
     return (
         <>
             <section className={styles.about_section}>
                 <div className={styles.about_section_left}>
-                    <Canvas className={styles.viewer} camera={{ position: [0, 0, 5.5] }} shadows>
-                        {/* Plano receptor de sombras */}
-                        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -1.2, 0]} receiveShadow>
-                            <planeGeometry args={[8, 8]} />
-                            <shadowMaterial opacity={0.35} />
-                        </mesh>
+                    <Canvas className={styles.viewer} camera={{ position: [0, 0, 5.5] }}>
                         <ambientLight intensity={0.5} />
-                        <directionalLight position={[5, 5, 5]} intensity={1} castShadow />
+                        <directionalLight position={[5, 5, 5]} intensity={1} />
                         <AbdominalTrauma />
                         <OrbitControls enableZoom={true}
                             enableRotate={true}
