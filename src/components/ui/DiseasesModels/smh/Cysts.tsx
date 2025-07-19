@@ -5,7 +5,36 @@ import * as THREE from 'three';
 
 export function Cysts(props: JSX.IntrinsicElements['group']) {
   const group = useRef<THREE.Group>(null);
+
   const { nodes } = useGLTF('/organs-models/smh/Spleen.glb');
+  const { nodes } = useGLTF("/organs-models/smh/Spleen.glb") as GLTF & {
+    nodes: {
+      Spleen?: THREE.Mesh;
+    };
+  };
+
+  const [isHovered, setIsHovered] = useState(false);
+  const [currentScale, setCurrentScale] = useState(initialScale);
+  const { camera } = useThree();
+
+  // Keyboard control
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (["ArrowUp", "ArrowDown", "+", "-"].includes(e.key)) {
+        e.preventDefault();
+
+        setCurrentScale((s) => {
+          if (e.key === "ArrowUp" || e.key === "+") return Math.min(s + 0.1, 1);
+          if (e.key === "ArrowDown" || e.key === "-")
+            return Math.max(s - 0.1, 0.5);
+          return s;
+        });
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   // Animación con useFrame (rotación suave)
   useFrame((_, delta) => {

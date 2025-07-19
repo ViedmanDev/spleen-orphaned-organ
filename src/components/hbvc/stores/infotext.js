@@ -6,30 +6,8 @@ export const infoTexts = [
     },
 
     {
-      title: '¿Por qué sucede?',
-      content: (
-        <>
-          <p>Las causas más comunes incluyen:</p>
-          <ul style={{ paddingLeft: '1.2rem', marginTop: '0.5rem', marginBottom: '1rem' }}>
-            <li>Problemas de coagulación de la sangre (como trombofilias).</li>
-            <li>Enfermedades del páncreas, como pancreatitis.</li>
-            <li>Infecciones o cirugías en el abdomen.</li>
-            <li>Cánceres que afectan órganos cercanos.</li>
-            <li>Lesiones fuertes en el abdomen.</li>
-          </ul>
-          <p style={{ marginBottom: '0.5rem' }}><strong>¿Qué efectos tiene en el cuerpo?</strong></p>
-          <p>Cuando la sangre no puede salir del bazo correctamente, puede provocar:</p>
-          <ul style={{ paddingLeft: '1.2rem', marginTop: '0.5rem' }}>
-            <li>Aumento del tamaño del bazo (esplenomegalia).</li>
-            <li>Dolor en la parte superior izquierda del abdomen.</li>
-            <li>Infarto esplénico en casos graves.</li>
-          </ul>
-          <p style={{ marginTop: '1rem' }}>
-            Esta condición puede ser silenciosa al principio, pero si no se trata, puede llevar a complicaciones más serias.
-            Por eso, es importante reconocer sus causas y síntomas a tiempo.
-          </p>
-        </>
-      )
+      title: 'Identificación del Dolor en la Trombosis Esplénica',
+      content: " El dolor asociado a la trombosis esplénica suele localizarse en el hipocondrio izquierdo (bajo las costillas del lado izquierdo) y puede irradiarse hacia el hombro izquierdo o la espalda, un fenómeno conocido como 'dolor referido'. A diferencia de otras molestias abdominales, este dolor tiende a ser persistente y sordo, aunque en casos agudos puede volverse intenso y punzante, especialmente si hay infarto esplénico. Es común que empeore con la respiración profunda o la palpación del área. Además, algunos pacientes describen una sensación de plenitud o hinchazón en el abdomen superior izquierdo debido a la congestión del bazo."
     },
     {
       title: 'Causas',

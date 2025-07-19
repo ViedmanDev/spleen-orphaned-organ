@@ -7,7 +7,7 @@ import { useStore } from './stores/stores';
 const TrombosisModel = (props) => {
   const gltf = useGLTF('/models/hbvc/trombosis.glb');
   const modelRef = useRef();
-  const { toggleInfo } = useStore();
+  const { toggleTInfo } = useStore(); // Usamos la nueva acción toggleTInfo
 
   useEffect(() => {
     gltf.scene.traverse((child) => {
@@ -32,7 +32,7 @@ const TrombosisModel = (props) => {
       {...props}
       onClick={(e) => {
         e.stopPropagation();
-        toggleInfo();
+        toggleTInfo(); // Solo usamos toggleTInfo ahora
       }}
     />
   );
