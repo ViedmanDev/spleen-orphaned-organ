@@ -12,7 +12,7 @@ const Footer = () => {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         alert(`Correo enviado: ${email}`);
-        setEmail(''); // Limpia el campo después de enviar
+        setEmail('');
     };
 
     return (
@@ -85,7 +85,7 @@ const Footer = () => {
                             type='email'
                             placeholder='Correo electrónico'
                             className={styles.footer_contact_input}
-                            value={email || ''}
+                            value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
                         />

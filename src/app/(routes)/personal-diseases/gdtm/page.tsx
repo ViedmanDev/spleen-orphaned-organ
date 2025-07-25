@@ -1,104 +1,116 @@
 'use client';
 
+import { useState } from 'react';
+import dynamic from 'next/dynamic';
 import { Canvas } from '@react-three/fiber';
-import styles from '@styles/routes/gdtm.module.css';
-import Bazoinfarto from '@components/ui/DiseasesModels/gdtm/Bazoinfarto';
-import Medico from '@components/ui/DiseasesModels/gdtm/Medico';
-import Medicina from '@components/ui/DiseasesModels/gdtm/medicina';
+import styles from '../../../../styles/routes/gdtm.module.css';
 
-export default function GDTM() {
-    return (
-        <section style={{ padding: '2rem' }}>
-            {/* Sección 1: ¿Qué es la enfermedad? */}
-            <h2 className={styles.section_title}>¿QUÉ ES EL INFARTO ESPLÉNICO?</h2>
-            <div className={styles.model_info_row}>
-                <div className={styles.model_column}>
-                    <div className={styles.canvas_container}>
-                        <Canvas camera={{ position: [0, 0, 5.5] }}>
-                            <ambientLight intensity={0.5} />
-                            <directionalLight position={[5, 5, 5]} intensity={1} />
-                            <Bazoinfarto />
-                        </Canvas>
-                        <button
-                            className={styles.fixed_button}
-                            onClick={() => alert('Representación de un bazo el cual sufrió un infarto esplénico.')}
-                        >
-                            Más info
-                        </button>
-                    </div>
-                </div>
-                <div className={styles.info_column}>
-                    <p className={styles.info_text}>
-                        El infarto esplénico es una condición médica en la que una parte del bazo muere debido
-                        a la interrupción del flujo sanguíneo, generalmente por un bloqueo en la arteria esplénica.
-                        Es común en personas con trastornos hematológicos, enfermedades autoinmunes o embolias.
-                    </p>
-                    <p className={styles.info_text}>
-                        Los síntomas incluyen dolor en el cuadrante superior izquierdo del abdomen, fiebre, náuseas
-                        y malestar general. El tratamiento varía desde manejo conservador con analgésicos hasta la
-                        extirpación del bazo en casos graves.
-                    </p>
-                </div>
-            </div>
+const Bazoinfarto = dynamic(() => import('../../../../components/ui/DiseasesModels/gdtm/Bazoinfarto'), { ssr: false });
+const Medico = dynamic(() => import('../../../../components/ui/DiseasesModels/gdtm/Medico'), { ssr: false });
+const Medicina = dynamic(() => import('../../../../components/ui/DiseasesModels/gdtm/Medicina'), { ssr: false });
+// const Habitos = dynamic(() => import('../../../../components/ui/DiseasesModels/gdtm/Habitos'), { ssr: false });
 
-            {/* Sección 2: Síntomas */}
-            <h2 className={styles.section_title}>SÍNTOMAS</h2>
-            <div className={styles.model_info_row}>
-                <div className={styles.model_column}>
-                    <div className={styles.canvas_container}>
-                        <Canvas camera={{ position: [0, 0, 5.5] }}>
-                            <ambientLight intensity={0.5} />
-                            <directionalLight position={[5, 5, 5]} intensity={1} />
-                            <Medico />
-                        </Canvas>
-                        <button
-                            className={styles.fixed_button}
-                            onClick={() => alert('Representación de un médico describiendo los síntomas.')}
-                        >
-                            Más info
-                        </button>
-                    </div>
-                </div>
-                <div className={styles.info_column}>
-                    <p className={styles.info_text}>
-                        El infarto esplénico puede ser asintomático en algunos casos, pero cuando se presentan síntomas,
-                        estos suelen ser intensos y localizados. Los más comunes son:
-                        dolor abdominal agudo en el lado izquierdo,
-                        fiebre persistente, náuseas y dolor irradiado al hombro (signo de Kehr).
-                    </p>
-                </div>
-            </div>
+export default function GdtmPage() {
+  const [visibleInfo, setVisibleInfo] = useState<number | null>(null);
 
-            {/* Sección 3: Tratamiento */}
-            <h2 className={styles.section_title}>TRATAMIENTO</h2>
-            <div className={styles.model_info_row}>
-                <div className={styles.model_column}>
-                    <div className={styles.canvas_container}>
-                        <Canvas camera={{ position: [0, 0, 5.5] }}>
-                            <ambientLight intensity={0.5} />
-                            <directionalLight position={[5, 5, 5]} intensity={1} />
-                            <Medicina />
-                        </Canvas>
-                        <button
-                            className={styles.fixed_button}
-                            onClick={() => alert('Simulación del tratamiento aplicado al bazo.')}
-                        >
-                            Más info
-                        </button>
-                    </div>
-                </div>
-                <div className={styles.info_column}>
-                    <p className={styles.info_text}>
-                        El tratamiento depende de la gravedad y la causa del infarto. Puede incluir reposo, hidratación,
-                        analgésicos, anticoagulantes, y en casos graves, la extirpación del bazo (esplenectomía).
-                    </p>
-                    <p className={styles.info_text}>
-                        Se recomienda seguimiento médico, control de enfermedades subyacentes y monitoreo por imágenes.
-                    </p>
-                </div>
+  const toggleInfo = (index: number) => {
+    setVisibleInfo(prev => (prev === index ? null : index));
+  };
+
+  const messages = [
+    'Ilustración de un Bazo humano, el cual sufrió un infarto esplénico.',
+    'Ilustración de un médico explicando los síntomas.',
+    'Ilustración de medicamentos.'
+  ];
+
+  return (
+    <div>
+      {/* Sección 1 */}
+      <div className={styles.model_info_row}>
+        <div className={styles.model_column}>
+          <div className={styles.canvas_container}>
+            <button className={styles.fixed_button} onClick={() => toggleInfo(0)}>Más info</button>
+            {visibleInfo === 0 && <div className={styles.info_popup}>{messages[0]}</div>}
+            <Canvas shadows>
+              <Bazoinfarto />
+            </Canvas>
+          </div>
+        </div>
+        <div className={styles.info_column}>
+          <h2 className={styles.info_title}>¿Qué es el infarto esplénico?</h2>
+          <p className={styles.info_text}>
+            El infarto esplénico ocurre cuando el suministro de sangre al bazo se ve interrumpido, causando necrosis
+            tisular. Es una condición rara pero potencialmente grave, que puede resultar de embolias, trombosis o
+            enfermedades hematológicas.
+          </p>
+        </div>
+      </div>
+
+      {/* Sección 2 */}
+      <div className={`${styles.model_info_row} ${styles.row_reverse}`}>
+        <div className={styles.model_column}>
+          <div className={styles.canvas_container}>
+            <button className={styles.fixed_button} onClick={() => toggleInfo(1)}>Más info</button>
+            {visibleInfo === 1 && <div className={styles.info_popup}>{messages[1]}</div>}
+            <Canvas shadows>
+              <Medico />
+            </Canvas>
+          </div>
+        </div>
+        <div className={styles.info_column}>
+          <h2 className={styles.info_title}>Síntomas y diagnóstico</h2>
+          <p className={styles.info_text}>
+            Los síntomas comunes incluyen dolor abdominal agudo en el cuadrante superior izquierdo, fiebre y náuseas.
+            El diagnóstico se confirma mediante imágenes como la tomografía computarizada (TC) o ecografía del bazo.
+          </p>
+        </div>
+      </div>
+
+      {/* Sección 3 */}
+      <div className={styles.model_info_row}>
+        <div className={styles.model_column}>
+          <div className={styles.canvas_container}>
+            <button className={styles.fixed_button} onClick={() => toggleInfo(2)}>Más info</button>
+            {visibleInfo === 2 && <div className={styles.info_popup}>{messages[2]}</div>}
+            <Canvas shadows>
+              <Medicina />
+            </Canvas>
+          </div>
+        </div>
+        <div className={styles.info_column}>
+          <h2 className={styles.info_title}>Tratamiento y recuperación</h2>
+          <p className={styles.info_text}>
+            El tratamiento del infarto esplénico depende de la causa subyacente. Generalmente incluye analgésicos,
+            anticoagulantes o incluso cirugía si hay complicaciones. La recuperación varía según la gravedad del caso.
+          </p>
+        </div>
+      </div>
+
+      {/* Sección 4 */}
+      <div className={`${styles.model_info_row} ${styles.row_reverse}`}>
+        <div className={styles.model_column}>
+          <div className={styles.canvas_container}>
+            <div className={styles.canvas_fallback}>
+              <p style={{ textAlign: 'center', color: '#999' }}>
+                Modelo de hábitos no disponible temporalmente.
+              </p>
             </div>
-        </section>
-    );
+            {/* <button className={styles.fixed_button} onClick={() => toggleInfo(3)}>Más info</button>
+            {visibleInfo === 3 && <div className={styles.info_popup}>Mensaje del modelo hábitos</div>}
+            <Canvas shadows>
+              <Habitos />
+            </Canvas> */}
+          </div>
+        </div>
+        <div className={styles.info_column}>
+          <h2 className={styles.info_title}>Prevención y cuidados</h2>
+          <p className={styles.info_text}>
+            Para prevenir el infarto esplénico es fundamental adoptar hábitos saludables como mantener una dieta
+            equilibrada, evitar el sedentarismo, hacer ejercicio regular y controlar enfermedades crónicas como la
+            hipertensión o trastornos hematológicos.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
 }
-
-
