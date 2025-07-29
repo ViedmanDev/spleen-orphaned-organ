@@ -3,6 +3,7 @@ import DropdownMenu from "@components/ui/Dropdown/DropdownMenu";
 import { Divider } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import { routes } from "@config/routes.config";
+import Image from "next/image";
 
 const items = [
     {
@@ -69,7 +70,7 @@ const HomeHeader = () => {
                     </button>
                 </div>
                 <div className={styles.right_section}>
-                    <img
+                    <Image
                         src="/assets/logo.png"
                         alt="logo"
                         width={500}

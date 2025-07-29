@@ -6,6 +6,7 @@ import { Divider } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import { routes, getRouteTitle } from "@config/routes.config";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 const items = [
     {
@@ -66,7 +67,7 @@ const Header = () => {
             <Divider className={styles.divider} />
             <nav className={styles.bottom_section}>
                 <div className={styles.bottom_section_container}>
-                    <img
+                    <Image
                         src="/assets/logo-difuminado.png"
                         alt="logo"
                         width={500}
