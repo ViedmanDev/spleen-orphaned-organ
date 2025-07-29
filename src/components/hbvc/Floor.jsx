@@ -21,6 +21,7 @@ const Floor = () => {
       <planeGeometry args={[10, 10]} />
       <meshStandardMaterial {...floorTexture} />
     </mesh>
+    </mesh>
   );
 };
 
