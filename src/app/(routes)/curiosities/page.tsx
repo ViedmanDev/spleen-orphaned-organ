@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from '@styles/routes/curiosities.module.css';
+import Image from 'next/image';
 
 interface CardProps {
     title: string;
@@ -10,7 +11,13 @@ interface CardProps {
 const Card: React.FC<CardProps> = ({ title, description, imageUrl }) => (
     <article className={styles.card}>
         <div className={styles.imageWrapper}>
-            <img src={imageUrl} alt={title} className={styles.image} loading="lazy" />
+            <Image
+                src={imageUrl}
+                alt={title}
+                width={300}
+                height={200}
+                className={styles.image}
+            />
         </div>
         <div className={styles.content}>
             <h1 className={styles.title}>{title}</h1>

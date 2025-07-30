@@ -18,7 +18,7 @@ import {
 //PointLightHelper,
 //SpotLightHelper,
   //DirectionalLightHelper,
-  MathUtils,
+  // MathUtils,
 } from 'three';
 
 const SpotLightToModel = () => {
