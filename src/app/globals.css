@@ -1,8 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
     --font-poppins: 'Poppins', sans-serif;
+
+    /* Colores del tema */
+    --color-primary: #BF5050;
+    --color-primary-hover: #990000;
+    --color-background-header: #f2d8c2;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
@@ -38,4 +49,28 @@ select {
     font-family: var(--font-poppins);
     font-weight: 500;
     /* Poppins 500 */
+}
+
+/* Clases de utilidad para colores */
+.text-primary {
+    color: var(--color-primary);
+}
+
+.text-primary-hover:hover {
+    color: var(--color-primary-hover);
+}
+
+.bg-header {
+    background-color: var(--color-background-header);
+}
+
+/* Clase para enlaces de navegación */
+.nav-link {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--color-primary-hover);
 }

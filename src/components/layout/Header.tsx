@@ -8,8 +8,9 @@ import Link from "next/link";
 const Header = () => {
 
     return (
-        <header className="bg-[#f2d8c2] py-4 px-10">
+        <header className="bg-header py-4 px-10">
             <div className="flex justify-between items-center">
+                {/* Logo */}
                 <Image
                     src="/assets/logo.png"
                     alt="logo"
@@ -20,16 +21,16 @@ const Header = () => {
                 {/* Menú de navegación */}
                 <nav className="flex items-center">
                     <ul className="flex list-none gap-6">
-                        <li><a href={routes.home} className="text-[#BF5050] no-underline hover:text-[#990000] transition-colors">INICIO</a></li>
+                        <li><Link href={routes.home} className="nav-link">INICIO</Link></li>
                         <li>
-                            <Link href="/enfermedades" className="text-[#BF5050] no-underline hover:text-[#990000] transition-colors">
+                            <Link href={routes.diseases} className="nav-link">
                                 ENFERMEDADES
                             </Link>
                         </li>
-                        <li><a href={routes.quiz} className="text-[#BF5050] no-underline hover:text-[#990000] transition-colors">QUIZ</a></li>
-                        <li><a href={routes.aboutUs} className="text-[#BF5050] no-underline hover:text-[#990000] transition-colors">SOBRE NOSOTROS</a></li>
-                        <li><a href={routes.curiosities} className="text-[#BF5050] no-underline hover:text-[#990000] transition-colors">CURIOSIDADES</a></li>
-                        <li><a href="#" className="text-[#BF5050] no-underline hover:text-[#990000] transition-colors">INICIAR SESIÓN</a></li>
+                        <li><Link href={routes.quiz} className="nav-link">QUIZ</Link></li>
+                        <li><Link href={routes.aboutUs} className="nav-link">SOBRE NOSOTROS</Link></li>
+                        <li><Link href={routes.curiosities} className="nav-link">CURIOSIDADES</Link></li>
+                        <li><Link href={routes.login} className="nav-link">INICIAR SESIÓN</Link></li>
                     </ul>
                 </nav>
             </div>

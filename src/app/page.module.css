@@ -1,6 +1,6 @@
 .info_box {
-    position: relative;
-    transform: translateY(-30%);
+    /* position: absolute;
+    transform: translateY(-30%); */
     padding: 1rem;
 }
 
