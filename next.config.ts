@@ -1,6 +1,3 @@
-import { message } from "antd"
-import { webpack } from "next/dist/compiled/webpack/webpack"
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     output: 'export',
