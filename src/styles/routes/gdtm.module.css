@@ -86,3 +86,23 @@
     border: none;
     cursor: pointer;
 }
+
+/* Cuadro emergente (mensaje informativo) */
+.info_popup {
+    position: absolute;
+    top: 3.5rem; /* debajo del botón */
+    right: 1rem;
+    background-color: #fff;
+    color: #333;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 9;
+    font-size: 0.9rem;
+    max-width: 250px;
+}
+
+/* Inversión del orden de las columnas */
+.row_reverse {
+    flex-direction: row-reverse;
+}
