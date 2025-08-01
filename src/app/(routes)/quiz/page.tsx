@@ -1,7 +1,8 @@
-import React from 'react'
+"use client"
 
-export default function quiz() {
-    return (
-        <div>quiz</div>
-    )
+import React from 'react';
+import { QuizApp } from '@components/ui/quiz';
+
+export default function Quiz3D() {
+    return <QuizApp />;
 }
