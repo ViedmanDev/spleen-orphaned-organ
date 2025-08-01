@@ -1,6 +1,6 @@
 'use client';
 
-import DiagnosisModel from '../DiagnosisModel/DiagnosisModel';
+import DiagnosisModel from './DiagnosisModel';
 import SpotLightToModel from '../SpotLightToModel';
 import CameraFocus from '../CameraFocus';
 import Scene from '../scene/Scene'

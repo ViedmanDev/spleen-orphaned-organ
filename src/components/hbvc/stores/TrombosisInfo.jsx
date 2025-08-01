@@ -1,6 +1,6 @@
 import { Html } from '@react-three/drei';
-import { useStore } from './stores/stores';
-import { infoTexts } from './stores/infotext';
+import { useStore } from './stores';
+import { infoTexts } from './infotext';
 
 const TrombosisInfo = () => {
   const { tInfoIndex, infoPosition } = useStore(); // Cambiado a tInfoIndex

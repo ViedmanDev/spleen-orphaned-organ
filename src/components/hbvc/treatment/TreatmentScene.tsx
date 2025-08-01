@@ -1,9 +1,9 @@
 'use client';
 
 import { useStore } from '../stores/stores';
-import TreatmentModel from '../TreatmentModel/TreatmentModel';
-import TreatmentTitle3D from '../TreatmentTitle3D/TreatmentTitle3D';
-import TreatmentInfo from '../TreatmentInfo/TreatmentInfo';
+import TreatmentModel from './TreatmentModel';
+import TreatmentTitle3D from './TreatmentTitle3D';
+import TreatmentInfo from './TreatmentInfo';
 import SpotLightToModel from '../SpotLightToModel';
 import CameraFocus from '../CameraFocus';
 import Scene from '../scene/Scene';

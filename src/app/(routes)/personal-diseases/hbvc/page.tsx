@@ -3,8 +3,10 @@
 
 import styles from "@styles/routes/hbvc.module.css";
 import TrombosisScene from '../../../../components/hbvc/trombosisScene/TrombosisScene';
-import DiagnosisScene from '../../../../components/hbvc/DiagnosisScene/DiagnosisScene';
-import TreatmentScene from '../../../../components/hbvc/TreatmentScene/TreatmentScene';
+import DiagnosisScene from '../../../../components/hbvc/diagnosis/DiagnosisScene';
+import TreatmentScene from '../../../../components/hbvc/treatment/TreatmentScene';
+import PreventionScene from '../../../../components/hbvc/prevention/PreventionScene';
+
 
 
 export default function HBVCPage() {
@@ -86,6 +88,22 @@ export default function HBVCPage() {
             <li><strong>Esplenectomía:</strong> En casos de infarto masivo o ruptura</li>
             <li><strong>Derivación esplenorrenal:</strong> Para hipertensión portal</li>
           </ul>
+        </div>
+      </section>
+      <section className={styles.about_section}>
+      {/* Sección 4 - prevencion */}
+        <div className={styles.about_section_left}>
+          <div className={styles.canvasContainer}>
+            <PreventionScene />
+          </div>
+        </div>
+
+        <div className={styles.about_section_right}>
+          <h1 className={styles.about_section_title}>TROMBOSIS ESPLÉNICA</h1>
+           <p className={styles.about_section_text}>
+            Combate la trombosis esplénica con dieta balanceada, ejercicio, hidratación y evitando tóxicos. Consulta a tu médico regularmente.
+          </p>
+
         </div>
       </section>
     </main>
