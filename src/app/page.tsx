@@ -1,13 +1,11 @@
 import OrgansSection from '@components/layout/OrgansSection/OrgansSection';
 import styles from './page.module.css';
-import Header from '@components/layout/Header';
 import Image from 'next/image';
 
 
 export default function Home() {
     return (
         <>
-            <Header />
             <nav className="flex items-center justify-between px-10 py-12 bg-[#f9fafb]">
                 <div className="flex-1 max-w-2xl">
                     <h1 className="text-4xl font-bold text-[#BF7E78] mb-4">BIENVENIDO A SCIENCE GATEWAY</h1>
