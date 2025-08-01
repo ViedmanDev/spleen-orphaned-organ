@@ -1,27 +1,28 @@
-import { useGLTF, Html } from "@react-three/drei";
+import { useGLTF, Text3D, Center } from "@react-three/drei";
 import { useRef, useState, useEffect } from "react";
 import * as THREE from "three";
 import { useStore } from "./stores/stores";
 import { useThree, ThreeEvent } from "@react-three/fiber";
 
-type TableProps = {
+type UltraSoundProps = {
   position?: THREE.Vector3 | [number, number, number];
   rotation?: THREE.Euler | [number, number, number];
   scale?: number;
   initialScale?: number;
 };
 
-const OperatingTable = ({
+const UltraSound = ({
   position = [0, 0, 0],
   rotation = [0, 0, 0],
   scale = 1,
   initialScale = 1,
-}: TableProps) => {
+}: UltraSoundProps) => {
   const group = useRef<THREE.Group>(null);
-  const gltf = useGLTF("/organs-models/smh/operating-table.glb");
-  const { activeModel, setActiveModel } = useStore();
+  const gltf = useGLTF("/organs-models/smh/ultra-sound-machine.glb");
+  const { activeModel, setActiveModel, toggleInfo } = useStore();
   const { camera } = useThree();
 
+  const [showInfo, setShowInfo] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [currentScale, setCurrentScale] = useState(initialScale);
   const [isActive, setIsActive] = useState(false);
@@ -53,7 +54,7 @@ const OperatingTable = ({
 
   // Sincronizar estado activo con el store
   useEffect(() => {
-    setIsActive(activeModel === "operatingTable");
+    setIsActive(activeModel === "ultrasound");
   }, [activeModel]);
 
   useEffect(() => {
@@ -67,19 +68,11 @@ const OperatingTable = ({
 
   const handleClick = (e: ThreeEvent<PointerEvent>) => {
     e.stopPropagation();
-    setActiveModel("operatingTable");
+    setActiveModel("ultrasound");
+    setShowInfo(!showInfo);
+    toggleInfo();
     camera.position.set(0, 2, 5);
     camera.lookAt(0, 0, 0);
-  };
-
-  const handlePointerEnter = (e: ThreeEvent<PointerEvent>) => {
-    e.stopPropagation();
-    setIsHovered(true);
-  };
-
-  const handlePointerLeave = (e: ThreeEvent<PointerEvent>) => {
-    e.stopPropagation();
-    setIsHovered(false);
   };
 
   return (
@@ -91,46 +84,45 @@ const OperatingTable = ({
     >
       <primitive
         object={gltf.scene}
-        onPointerEnter={handlePointerEnter}
-        onPointerLeave={handlePointerLeave}
+        onPointerEnter={(e: ThreeEvent<PointerEvent>) => {
+          e.stopPropagation();
+          setIsHovered(true);
+        }}
+        onPointerLeave={(e: ThreeEvent<PointerEvent>) => {
+          e.stopPropagation();
+          setIsHovered(false);
+        }}
         onClick={handleClick}
-      >
-        <Html
-          position={[1, 0.5, 0]}
-          center
-          distanceFactor={8}
-          style={{
-            background: isActive
-              ? "rgba(255, 200, 200, 0.9)"
-              : "rgba(242, 216, 194, 0.85)",
-            color: "#a63372",
-            padding: "2px",
-            borderRadius: "2px",
-            pointerEvents: "none",
-            opacity: isHovered ? 1 : 0,
-            transition: "all 0.5s ease",
-            width: "200px",
-            textAlign: "center",
-            fontFamily: '"Arial", sans-serif',
-            fontSize: "0.4rem",
-            lineHeight: "1.5",
-            boxShadow: "0 4px 30px rgba(0, 0, 0, 0.3)",
-            border: "1px solid rgba(255, 255, 255, 0.2)",
-            backdropFilter: "blur(5px)",
-          }}
-        >
-          <h3 style={{ marginTop: 0, marginBottom: "8px", fontSize: "1rem" }}>
-            ¿Sabías qué?
-          </h3>
-          <p style={{ margin: 0 }}>
-            La duración de una operación de extracción de quistes En general, puede durar desde 30 minutos hasta varias horas, dependiendo de la complejidad del caso y la ubicación del quiste.
-          </p>
-        </Html>
-      </primitive>
+      />
 
-      {/* Indicador de hover */}
-      {isHovered && (
-        <mesh position={[0, -1, 0]}>
+      {showInfo && (
+        <group position={[0, 15, 0]}>
+          <group
+            position={[0, 0, 0]}
+            onUpdate={(self) => self.lookAt(camera.position)}
+          >
+            <Center>
+              <Text3D
+                font="/fonts/alice.json"
+                size={20}
+                height={0.1}
+                curveSegments={12}
+                bevelEnabled
+                bevelThickness={0.03}
+                bevelSize={0.02}
+                bevelOffset={0}
+                bevelSegments={5}
+              >
+                EQUIPO DE ULTRASONIDO
+                <meshStandardMaterial color={isActive ? "#ff0000" : "#a63247"} />
+              </Text3D>
+            </Center>
+          </group>
+        </group>
+      )}
+
+      {isHovered && !showInfo && (
+        <mesh position={[0, 10, 0]}>
           <ringGeometry args={[0.8, 0.85, 32]} />
           <meshStandardMaterial
             color="#a63372"
@@ -144,5 +136,5 @@ const OperatingTable = ({
   );
 };
 
-useGLTF.preload("/organs-models/smh/operating-table.glb");
-export default OperatingTable;
+useGLTF.preload("/organs-models/smh/ultra-sound-machine.glb");
+export default UltraSound;

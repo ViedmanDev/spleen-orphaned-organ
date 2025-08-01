@@ -10,6 +10,8 @@ import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import { Suspense } from "react";
 import { Lights } from "@components/ui/DiseasesModels/smh/Lights";
 import OperatingTable from "@components/ui/DiseasesModels/smh/Table";
+import UltraSound from "@components/ui/DiseasesModels/smh/UltraSound";
+import { PositionalAudio } from "@react-three/drei";
 import { Sky } from "@react-three/drei";
 // import SpotLightToModel from "@components/hbvc/SpotLightToModel";
 
@@ -82,6 +84,7 @@ export default function CombinedModelsPage() {
         </div>
       </section>
 
+      {/* Sección del Enfermo */}
       <section className={smhStyles.about_section}>
         <div className={smhStyles.about_section_left}>
           <Canvas
@@ -171,6 +174,64 @@ export default function CombinedModelsPage() {
                 fade
                 speed={0.2}
               />
+
+              <UltraSound
+                position={[0, -1, 0]}
+                scale={2}
+                rotation={[0, -Math.PI / 4, 0]}
+              />
+              <Floor />
+              <OrbitControls
+                enableZoom={true}
+                enableRotate={true}
+                enablePan={true}
+                minDistance={0.5}
+                maxDistance={1000}
+                target={[0, 0, 0]}
+              />
+              <EffectComposer>
+                <Bloom intensity={0.3} />
+              </EffectComposer>
+            </Suspense>
+          </Canvas>
+        </div>
+        <div className={smhStyles.about_section_right}>
+          <h1 className={smhStyles.about_section_title}>Detecion</h1>
+          <p className={smhStyles.about_section_text}>
+            Los quistes esplénicos se detectan mediante ecografía abdominal
+            (método inicial), tomografía computarizada (para detalles
+            anatómicos), resonancia magnética (en casos complejos), análisis
+            sanguíneos (para detectar infección) y evaluación clínica de
+            síntomas como dolor abdominal o masa palpable..
+          </p>
+        </div>
+      </section>
+
+      <section className={smhStyles.about_section}>
+        <div className={smhStyles.about_section_left}>
+          <Canvas
+            shadows
+            className={smhStyles.viewer}
+            camera={{
+              position: [0, 2, 5], // Posición inicial más cercana
+              fov: 45, // Campo de visión más estrecho
+              near: 0.1,
+              far: 1000,
+            }}
+          >
+            <Suspense fallback={null}>
+              {/* PRIMER SISTEMA DE ILUMINACIÓN - Usando tu componente Lights modificado */}
+
+              <Lights modelType="operatingTable" showHelpers={false} />
+              <Stars
+                radius={100}
+                depth={50}
+                count={2000}
+                factor={2}
+                saturation={0}
+                fade
+                speed={0.2}
+              />
               {/* Modelo human (Enfermo) */}
 
               <OperatingTable
@@ -178,6 +239,14 @@ export default function CombinedModelsPage() {
                 scale={2}
                 rotation={[0, -Math.PI / 4, 0]}
               />
+              <PositionalAudio
+                url="/organs-models/smh/Sound/TableS.mp3"
+                distance={10}
+                loop
+                autoplay
+                position={[0, -1, 0]} // Igual que el modelo para que el sonido venga de la mesa
+              />
+
               <Floor />
               <OrbitControls
                 enableZoom={true}
