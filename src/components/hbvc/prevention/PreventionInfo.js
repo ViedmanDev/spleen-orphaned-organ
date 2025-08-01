@@ -1,5 +1,4 @@
 'use client';
-
 import { Html } from '@react-three/drei';
 import { useStore } from '../stores/stores';
 
@@ -36,10 +35,12 @@ const PreventionInfo = () => {
         <h3 style={{ margin: '0 0 0.5rem 0', fontSize: '1.4rem', color: '#BF5050' }}>
           Prevención y cuidados
         </h3>
-        <p style={{ margin: 0, fontSize: '1.05rem', lineHeight: 1.5 }}>
-          Adopta hábitos saludables como una alimentación balanceada, ejercicio regular e hidratación adecuada.
-          Evita sustancias tóxicas y consulta periódicamente a tu médico.
-        </p>
+        <ul style={{ margin: '0.5rem 0', paddingLeft: '1.2rem', lineHeight: '1.6' }}>
+          <li><strong>Dieta:</strong> Rica en fibra y antioxidantes.</li>
+          <li><strong>Ejercicio:</strong> 30 minutos diarios.</li>
+          <li><strong>Hidratación:</strong> 2L de agua al día.</li>
+          <li><strong>Evita:</strong> Tabaco y alcohol excesivo.</li>
+        </ul>
       </div>
     </Html>
   );

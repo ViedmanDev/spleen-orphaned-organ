@@ -1,41 +1,41 @@
 'use client';
-
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Environment, useGLTF } from '@react-three/drei';
-import { Suspense } from 'react';
-import CameraFocusPrevention from './CameraFocusPrevention';
-import PreventionInfo from './PreventionInfo';
 import { useStore } from '../stores/stores';
-
-function PreventionModel() {
-  const { togglePrevInfo } = useStore();
-  const gltf = useGLTF('/models/hbvc/Prevention.glb');
-  return (
-    <primitive
-      object={gltf.scene}
-      scale={1.2}
-      position={[0, 0, 0]}
-      onClick={togglePrevInfo}
-    />
-  );
-}
+import PreventionModel from './PreventionModel';
+import PreventionInfo from './PreventionInfo';
+import CameraFocusPrevention from './CameraFocusPrevention';
+import Scene from '../scene/Scene';
+import SpotLightToModel from '../SpotLightToModel';
+import { Sky } from '@react-three/drei';
 
 export default function PreventionScene() {
-  const { prevShowInfo } = useStore();
+  const { prevShowInfo, togglePrevInfo } = useStore();
 
   return (
-    <div style={{ width: '100%', height: '100%' }}>
-      <Canvas camera={{ position: [0, 1.5, 5], fov: 50 }}>
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[4, 6, 3]} intensity={1.2} />
-        <Suspense fallback={null}>
-          <PreventionModel />
-          <Environment files="/textures/hbvc/hdri/hospital_room_2_4k.exr" background />
-        </Suspense>
-        <CameraFocusPrevention />
-        <OrbitControls enableZoom={true} />
-        {prevShowInfo && <PreventionInfo />}
-      </Canvas>
-    </div>
+    <Scene
+      lights={
+        <>
+          <ambientLight intensity={0.3} color="#ffffff" />
+          <directionalLight castShadow position={[2, 5, 2]} />
+          <SpotLightToModel />
+        </>
+      }
+      onPointerMissed={() => prevShowInfo && togglePrevInfo()}
+    >
+      {/* Ambiente diurno con cielo claro y nubes */}
+      <Sky
+        distance={450000}
+        sunPosition={[0, 1, 0]} // Sol alto (día)
+        turbidity={8}           // Aumenta la turbidez = más nubes
+        rayleigh={2}            // Mayor dispersión atmosférica (luz azul)
+        mieCoefficient={0.005}  // Dispersión Mie (nubes finas)
+        mieDirectionalG={0.7}
+        inclination={0.49}
+        azimuth={0.25}
+      />
+      <CameraFocusPrevention />
+      <PreventionModel position={[0, 0, 0]} scale={1.5} />
+      {/* <TextTitle3D text="PREVENCIÓN" position={[0, 2, -2]} /> */}
+      {prevShowInfo && <PreventionInfo />}
+    </Scene>
   );
 }
