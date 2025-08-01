@@ -11,7 +11,6 @@ import { Suspense } from "react";
 import { Lights } from "@components/ui/DiseasesModels/smh/Lights";
 import OperatingTable from "@components/ui/DiseasesModels/smh/Table";
 import UltraSound from "@components/ui/DiseasesModels/smh/UltraSound";
-import { PositionalAudio } from "@react-three/drei";
 import { Sky } from "@react-three/drei";
 // import SpotLightToModel from "@components/hbvc/SpotLightToModel";
 
@@ -286,14 +285,6 @@ export default function CombinedModelsPage() {
           >
             <Suspense fallback={null}>
 
-               <PositionalAudio
-                url="/organs-models/smh/Sound/TableS.mp3"
-                distance={8}
-                loop
-                autoplay
-                position={[0, -1, 0]} // Igual que el modelo para que el sonido venga de la mesa
-              />
-           
               {/* PRIMER SISTEMA DE ILUMINACIÓN - Usando tu componente Lights modificado */}
 
               <Lights modelType="operatingTable" showHelpers={false} />
