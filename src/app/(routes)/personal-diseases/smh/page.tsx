@@ -1,7 +1,7 @@
 "use client";
 
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Stars } from "@react-three/drei";
+import { Environment, OrbitControls, Stars } from "@react-three/drei";
 import Floor from "../../../../components/hbvc/Floor";
 import { Cysts } from "@components/ui/DiseasesModels/smh/Cysts";
 import Human from "@components/ui/DiseasesModels/smh/human";
@@ -10,6 +10,7 @@ import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import { Suspense } from "react";
 import { Lights } from "@components/ui/DiseasesModels/smh/Lights";
 import OperatingTable from "@components/ui/DiseasesModels/smh/Table";
+import UltraSound from "@components/ui/DiseasesModels/smh/UltraSound";
 import { Sky } from "@react-three/drei";
 // import SpotLightToModel from "@components/hbvc/SpotLightToModel";
 
@@ -79,9 +80,29 @@ export default function CombinedModelsPage() {
             inmunohematológica y, en casos graves, causar ruptura con riesgo
             hemorrágico o compresión vascular adyacente.
           </p>
+          <div className={smhStyles.modelInstructions}>
+            <h4 className={smhStyles.instructionsTitle}>
+              Controles del Modelo 3D
+            </h4>
+            <div className={smhStyles.instructionsGrid}>
+              <div className={smhStyles.instructionItem}>
+                • <strong>Rotar:</strong> Clic izquierdo + arrastrar
+                <p>  • <strong>Mover:</strong> Clic derecho + arrastrar  </p>
+                • <strong>Restablecer:</strong> Doble clic
+              </div>
+              <div className={smhStyles.instructionItem}>
+                • <strong>Zoom:</strong> Rueda del ratón
+                <p>• <strong>Tamaño:</strong> flecha arriba/abajo ↑↓</p>
+              </div>
+              <div className={smhStyles.instructionItem}>
+
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
+      {/* Sección del Enfermo */}
       <section className={smhStyles.about_section}>
         <div className={smhStyles.about_section_left}>
           <Canvas
@@ -143,6 +164,25 @@ export default function CombinedModelsPage() {
             en casos raros, complicaciones como infección, ruptura (con dolor
             agudo y sangrado interno) o presión sobre órganos adyacentes.
           </p>
+          <div className={smhStyles.modelInstructions}>
+            <h4 className={smhStyles.instructionsTitle}>
+              Controles del Modelo 3D
+            </h4>
+            <div className={smhStyles.instructionsGrid}>
+              <div className={smhStyles.instructionItem}>
+                • <strong>Rotar:</strong> Clic izquierdo + arrastrar
+                <p>  • <strong>Mover:</strong> Clic derecho + arrastrar  </p>
+                • <strong>Restablecer:</strong> Doble clic
+              </div>
+              <div className={smhStyles.instructionItem}>
+                • <strong>Zoom:</strong> Rueda del ratón
+                <p>• <strong>Tamaño:</strong> flecha arriba/abajo ↑↓</p>
+              </div>
+              <div className={smhStyles.instructionItem}>
+
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -159,6 +199,92 @@ export default function CombinedModelsPage() {
             }}
           >
             <Suspense fallback={null}>
+              {/* PRIMER SISTEMA DE ILUMINACIÓN - Usando tu componente Lights modificado */}
+
+              <Environment
+                preset="dawn"
+                blur={0.3} // Desenfoque sutil
+                ground={{
+                  height: 10, // Altura del plano "tierra"
+                  radius: 60, // Radio de influencia
+                  scale: 100, // Escala del suelo
+                }}
+              />
+
+              <directionalLight
+                position={[5, 5, 5]}
+                intensity={0.8}
+                color="#ffdfb8" // Tono cálido que combina con el sunset
+                castShadow
+              />
+
+              <UltraSound
+                position={[0, -1, 0]}
+                scale={2}
+                rotation={[0, -Math.PI / 4, 0]}
+              />
+              <Floor />
+              <OrbitControls
+                enableZoom={true}
+                enableRotate={true}
+                enablePan={true}
+                minDistance={0.5}
+                maxDistance={1000}
+                target={[0, 0, 0]}
+              />
+              <EffectComposer>
+                <Bloom intensity={0.3} />
+              </EffectComposer>
+            </Suspense>
+          </Canvas>
+        </div>
+
+
+        <div className={smhStyles.about_section_right}>
+          <h1 className={smhStyles.about_section_title}>Detecion</h1>
+          <p className={smhStyles.about_section_text}>
+            Los quistes esplénicos se detectan mediante ecografía abdominal
+            (método inicial), tomografía computarizada (para detalles
+            anatómicos), resonancia magnética (en casos complejos), análisis
+            sanguíneos (para detectar infección) y evaluación clínica de
+            síntomas como dolor abdominal o masa palpable..
+          </p>
+          <div className={smhStyles.modelInstructions}>
+            <h4 className={smhStyles.instructionsTitle}>
+              Controles del Modelo 3D
+            </h4>
+            <div className={smhStyles.instructionsGrid}>
+              <div className={smhStyles.instructionItem}>
+                • <strong>Rotar:</strong> Clic izquierdo + arrastrar
+                <p>  • <strong>Mover:</strong> Clic derecho + arrastrar  </p>
+                • <strong>Restablecer:</strong> Doble clic
+              </div>
+              <div className={smhStyles.instructionItem}>
+                • <strong>Zoom:</strong> Rueda del ratón
+                <p>• <strong>Tamaño:</strong> flecha arriba/abajo ↑↓</p>
+              </div>
+              <div className={smhStyles.instructionItem}>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className={smhStyles.about_section}>
+        <div className={smhStyles.about_section_left}>
+          <Canvas
+            shadows
+            className={smhStyles.viewer}
+            camera={{
+              position: [0, 2, 5], // Posición inicial más cercana
+              fov: 45, // Campo de visión más estrecho
+              near: 0.1,
+              far: 1000,
+            }}
+          >
+            <Suspense fallback={null}>
+
               {/* PRIMER SISTEMA DE ILUMINACIÓN - Usando tu componente Lights modificado */}
 
               <Lights modelType="operatingTable" showHelpers={false} />
@@ -178,6 +304,8 @@ export default function CombinedModelsPage() {
                 scale={2}
                 rotation={[0, -Math.PI / 4, 0]}
               />
+
+
               <Floor />
               <OrbitControls
                 enableZoom={true}
@@ -207,6 +335,25 @@ export default function CombinedModelsPage() {
             lo que siempre debe ser evaluado por un especialista en cirugía
             digestiva o hepatobiliar.
           </p>
+          <div className={smhStyles.modelInstructions}>
+            <h4 className={smhStyles.instructionsTitle}>
+              Controles del Modelo 3D
+            </h4>
+            <div className={smhStyles.instructionsGrid}>
+              <div className={smhStyles.instructionItem}>
+                • <strong>Rotar:</strong> Clic izquierdo + arrastrar
+                <p>  • <strong>Mover:</strong> Clic derecho + arrastrar  </p>
+                • <strong>Restablecer:</strong> Doble clic
+              </div>
+              <div className={smhStyles.instructionItem}>
+                • <strong>Zoom:</strong> Rueda del ratón
+                <p>• <strong>Tamaño:</strong> flecha arriba/abajo ↑↓</p>
+              </div>
+              <div className={smhStyles.instructionItem}>
+
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </>

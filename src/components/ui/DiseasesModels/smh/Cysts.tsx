@@ -3,16 +3,15 @@ import { useGLTF, Html } from "@react-three/drei";
 import { useRef, useState, useEffect } from "react";
 import * as THREE from "three";
 import { GLTF } from "three-stdlib";
+import { useStore } from "./stores/stores";
+import { ThreeEvent } from "@react-three/fiber";
 
 type CystsProps = {
   rotationSpeed?: number;
   position?: THREE.Vector3 | [number, number, number];
   rotation?: THREE.Euler | [number, number, number];
-  scale?: number; // Now accepts a single number instead of Vector3
-  initialScale?: number; // Added for keyboard control base
-  onClick?: (event: THREE.Event) => void;
-  onPointerEnter?: (event: THREE.Event) => void;
-  onPointerLeave?: (event: THREE.Event) => void;
+  scale?: number;
+  initialScale?: number;
 };
 
 export function Cysts({
@@ -27,17 +26,20 @@ export function Cysts({
       Spleen?: THREE.Mesh;
     };
   };
+  const { activeModel, setActiveModel } = useStore();
+  const { camera } = useThree();
 
   const [isHovered, setIsHovered] = useState(false);
   const [currentScale, setCurrentScale] = useState(initialScale);
-  const { camera } = useThree();
+  const [isActive, setIsActive] = useState(false);
 
-  // Keyboard control
+  // Controles de teclado solo cuando este modelo está activo
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (!isActive) return;
+
       if (["ArrowUp", "ArrowDown", "+", "-"].includes(e.key)) {
         e.preventDefault();
-
         setCurrentScale((s) => {
           if (e.key === "ArrowUp" || e.key === "+") return Math.min(s + 0.1, 1);
           if (e.key === "ArrowDown" || e.key === "-")
@@ -49,12 +51,16 @@ export function Cysts({
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  }, [isActive]);
+
+  // Sincronizar estado activo con el store
+  useEffect(() => {
+    setIsActive(activeModel === "cysts");
+  }, [activeModel]);
 
   useFrame((_, delta) => {
     if (group.current) {
       group.current.rotation.y += delta * rotationSpeed * (isHovered ? 2 : 1);
-      // Apply both base scale and interactive scale
       group.current.scale.set(
         scale * currentScale,
         scale * currentScale,
@@ -63,24 +69,30 @@ export function Cysts({
     }
   });
 
+  const handleClick = (e: ThreeEvent<PointerEvent>) => {
+    e.stopPropagation();
+    setActiveModel("cysts");
+    camera.position.set(0, 2, 5);
+    camera.lookAt(0, 0, 0);
+  };
+
+  const handlePointerEnter = (e: ThreeEvent<PointerEvent>) => {
+    e.stopPropagation();
+    setIsHovered(true);
+  };
+
+  const handlePointerLeave = (e: ThreeEvent<PointerEvent>) => {
+    e.stopPropagation();
+    setIsHovered(false);
+  };
+
   return (
     <group
       ref={group}
       {...props}
-      onPointerEnter={(e) => {
-        e.stopPropagation();
-        setIsHovered(true);
-      }}
-      onPointerLeave={(e) => {
-        e.stopPropagation();
-        setIsHovered(false);
-      }}
-      onClick={(e) => {
-        e.stopPropagation();
-        (e.nativeEvent as MouseEvent).preventDefault();
-        camera.position.set(0, 2, 5);
-        camera.lookAt(0, 0, 0);
-      }}
+      onPointerEnter={handlePointerEnter}
+      onPointerLeave={handlePointerLeave}
+      onClick={handleClick}
     >
       {nodes.Spleen && (
         <mesh
@@ -94,7 +106,9 @@ export function Cysts({
             center
             distanceFactor={8}
             style={{
-              background: "rgba(242, 216, 194, 0.85)",
+              background: isActive
+                ? "rgba(255, 200, 200, 0.9)"
+                : "rgba(242, 216, 194, 0.85)",
               color: "#a63372",
               padding: "2px",
               borderRadius: "2px",
@@ -116,7 +130,7 @@ export function Cysts({
             >
               ¿Sabías qué?
             </h3>
-            <p style={{ margin: 0, }}>
+            <p style={{ margin: 0 }}>
               Los quistes esplénicos pequeños suelen ser asintomáticos y se
               descubren accidentalmente en estudios de imagen.
             </p>

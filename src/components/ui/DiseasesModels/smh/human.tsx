@@ -19,20 +19,23 @@ const Human = ({
 }: HumanProps) => {
   const group = useRef<THREE.Group>(null);
   const gltf = useGLTF("/organs-models/smh/human.glb");
-  const { toggleInfo } = useStore();
+  const { activeModel, setActiveModel, toggleInfo } = useStore();
   const { camera } = useThree();
 
   const [showInfo, setShowInfo] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [currentScale, setCurrentScale] = useState(initialScale);
+  const [isActive, setIsActive] = useState(false);
 
   // Límites de escala
   const MIN_SCALE = 0.5;
   const MAX_SCALE = 1;
 
-  // Controles de teclado (MANTENIDO COMO ESTABA)
+  // Controles de teclado solo cuando este modelo está activo
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (!isActive) return;
+
       if (["ArrowUp", "ArrowDown", "+", "-"].includes(e.key)) {
         e.preventDefault();
         setCurrentScale((s) => {
@@ -47,7 +50,12 @@ const Human = ({
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  }, [isActive]);
+
+  // Sincronizar estado activo con el store
+  useEffect(() => {
+    setIsActive(activeModel === "human");
+  }, [activeModel]);
 
   useEffect(() => {
     gltf.scene.traverse((child) => {
@@ -58,6 +66,25 @@ const Human = ({
     });
   }, [gltf]);
 
+  const handleClick = (e: ThreeEvent<PointerEvent>) => {
+    e.stopPropagation();
+    setActiveModel("human"); // Establece este modelo como activo
+    setShowInfo(!showInfo);
+    toggleInfo();
+    camera.position.set(0, 0, 5);
+    camera.lookAt(0, 0, 0);
+  };
+
+  const handlePointerEnter = (e: ThreeEvent<PointerEvent>) => {
+    e.stopPropagation();
+    setIsHovered(true);
+  };
+
+  const handlePointerLeave = (e: ThreeEvent<PointerEvent>) => {
+    e.stopPropagation();
+    setIsHovered(false);
+  };
+
   return (
     <group
       ref={group}
@@ -67,27 +94,13 @@ const Human = ({
     >
       <primitive
         object={gltf.scene}
-        onPointerEnter={(e: ThreeEvent<PointerEvent>) => {
-          e.stopPropagation();
-          setIsHovered(true);
-        }}
-        onPointerLeave={(e: ThreeEvent<PointerEvent>) => {
-          e.stopPropagation();
-          setIsHovered(false);
-        }}
-        onClick={(e: ThreeEvent<PointerEvent>) => {
-          e.stopPropagation();
-          setShowInfo(!showInfo);
-          toggleInfo();
-          camera.position.set(0, 0, 5);
-          camera.lookAt(0, 0, 0);
-        }}
+        onPointerEnter={handlePointerEnter}
+        onPointerLeave={handlePointerLeave}
+        onClick={handleClick}
       />
 
-      {/* TEXTO 3D EXACTO COMO EL EJEMPLO QUE PROPORCIONASTE */}
       {showInfo && (
         <group position={[0, 15, 0]}>
-          {/* Usamos billboarding para que el texto siempre mire a la cámara */}
           <group
             position={[0, 0, 0]}
             onUpdate={(self) => self.lookAt(camera.position)}
@@ -105,14 +118,13 @@ const Human = ({
                 bevelSegments={5}
               >
                 VOMITO
-                <meshStandardMaterial color="#a63247" />
+                <meshStandardMaterial color={isActive ? "#ff0000" : "#a63247"} />
               </Text3D>
             </Center>
           </group>
         </group>
       )}
 
-      {/* Indicador de hover (MANTENIDO COMO ESTABA) */}
       {isHovered && !showInfo && (
         <mesh position={[0, 7, 0]}>
           <ringGeometry args={[0.8, 0.85, 32]} />
