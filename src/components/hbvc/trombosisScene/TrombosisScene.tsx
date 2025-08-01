@@ -1,9 +1,9 @@
 'use client';
 
 import { useStore } from '../stores/stores';
-import TrombosisModel from '../TrombosisModel';
+import TrombosisModel from './TrombosisModel';
 import TextTitle3D from '../TextTitle3D';
-import TrombosisInfo from '../TrombosisInfo';
+import TrombosisInfo from '../stores/TrombosisInfo';
 import SpotLightToModel from '../SpotLightToModel';
 import CameraFocusTrombosis from './CameraFocusTrombosis';
 import Scene from '../scene/Scene';

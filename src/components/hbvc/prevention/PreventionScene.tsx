@@ -5,7 +5,7 @@ import { OrbitControls, Environment, useGLTF } from '@react-three/drei';
 import { Suspense } from 'react';
 import CameraFocusPrevention from './CameraFocusPrevention';
 import PreventionInfo from './PreventionInfo';
-import { useStore } from './stores/stores';
+import { useStore } from '../stores/stores';
 
 function PreventionModel() {
   const { togglePrevInfo } = useStore();

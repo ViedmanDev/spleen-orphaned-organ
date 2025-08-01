@@ -1,7 +1,7 @@
 'use client';
 
 import { Html } from '@react-three/drei';
-import { useStore } from './stores/stores';
+import { useStore } from '../stores/stores';
 
 const PreventionInfo = () => {
   const { togglePrevInfo } = useStore();

@@ -2,7 +2,7 @@
 import { useThree, useFrame } from '@react-three/fiber';
 import { useRef } from 'react';
 import * as THREE from 'three';
-import { useStore } from './stores/stores';
+import { useStore } from '../stores/stores';
 
 const CameraFocusPrevention = () => {
   const { camera } = useThree();

@@ -2,7 +2,7 @@
 import { useGLTF } from '@react-three/drei';
 import { useRef, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { useStore } from './stores/stores';
+import { useStore } from '../stores/stores';
 
 const TrombosisModel = (props) => {
   const gltf = useGLTF('/models/hbvc/trombosis.glb');

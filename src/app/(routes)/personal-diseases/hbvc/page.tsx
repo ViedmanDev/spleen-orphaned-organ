@@ -3,9 +3,9 @@
 
 import styles from "@styles/routes/hbvc.module.css";
 import TrombosisScene from '../../../../components/hbvc/trombosisScene/TrombosisScene';
-import DiagnosisScene from '../../../../components/hbvc/DiagnosisScene/DiagnosisScene';
-import TreatmentScene from '../../../../components/hbvc/TreatmentScene/TreatmentScene';
-import PreventionScene from '../../../../components/hbvc/PreventionScene';
+import DiagnosisScene from '../../../../components/hbvc/diagnosis/DiagnosisScene';
+import TreatmentScene from '../../../../components/hbvc/treatment/TreatmentScene';
+import PreventionScene from '../../../../components/hbvc/prevention/PreventionScene';
 
 
 
