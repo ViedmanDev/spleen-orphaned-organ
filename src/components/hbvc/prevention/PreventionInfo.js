@@ -6,7 +6,7 @@ const PreventionInfo = () => {
   const { togglePrevInfo } = useStore();
 
   return (
-    <Html transform position={[0, 1.5, 0]} distanceFactor={2.5} zIndexRange={[100, 0]}>
+    <Html transform position={[0, 0.5, 0]} distanceFactor={2.5} zIndexRange={[100, 0]}>
       <div style={{
         backgroundColor: 'rgba(0, 0, 0, 0.85)',
         padding: '1.5rem',
