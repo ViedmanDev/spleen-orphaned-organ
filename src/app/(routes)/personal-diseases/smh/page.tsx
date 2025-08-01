@@ -1,7 +1,7 @@
 "use client";
 
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Stars } from "@react-three/drei";
+import { Environment, OrbitControls, Stars } from "@react-three/drei";
 import Floor from "../../../../components/hbvc/Floor";
 import { Cysts } from "@components/ui/DiseasesModels/smh/Cysts";
 import Human from "@components/ui/DiseasesModels/smh/human";
@@ -81,6 +81,25 @@ export default function CombinedModelsPage() {
             inmunohematológica y, en casos graves, causar ruptura con riesgo
             hemorrágico o compresión vascular adyacente.
           </p>
+          <div className={smhStyles.modelInstructions}>
+            <h4 className={smhStyles.instructionsTitle}>
+              Controles del Modelo 3D
+            </h4>
+            <div className={smhStyles.instructionsGrid}>
+              <div className={smhStyles.instructionItem}>
+                • <strong>Rotar:</strong> Clic izquierdo + arrastrar
+                <p>  • <strong>Mover:</strong> Clic derecho + arrastrar  </p>
+                • <strong>Restablecer:</strong> Doble clic
+              </div>
+              <div className={smhStyles.instructionItem}>
+                • <strong>Zoom:</strong> Rueda del ratón
+                <p>• <strong>Tamaño:</strong> flecha arriba/abajo ↑↓</p>
+              </div>
+              <div className={smhStyles.instructionItem}>
+
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -146,6 +165,25 @@ export default function CombinedModelsPage() {
             en casos raros, complicaciones como infección, ruptura (con dolor
             agudo y sangrado interno) o presión sobre órganos adyacentes.
           </p>
+          <div className={smhStyles.modelInstructions}>
+            <h4 className={smhStyles.instructionsTitle}>
+              Controles del Modelo 3D
+            </h4>
+            <div className={smhStyles.instructionsGrid}>
+              <div className={smhStyles.instructionItem}>
+                • <strong>Rotar:</strong> Clic izquierdo + arrastrar
+                <p>  • <strong>Mover:</strong> Clic derecho + arrastrar  </p>
+                • <strong>Restablecer:</strong> Doble clic
+              </div>
+              <div className={smhStyles.instructionItem}>
+                • <strong>Zoom:</strong> Rueda del ratón
+                <p>• <strong>Tamaño:</strong> flecha arriba/abajo ↑↓</p>
+              </div>
+              <div className={smhStyles.instructionItem}>
+
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -164,15 +202,21 @@ export default function CombinedModelsPage() {
             <Suspense fallback={null}>
               {/* PRIMER SISTEMA DE ILUMINACIÓN - Usando tu componente Lights modificado */}
 
-              <Lights modelType="operatingTable" showHelpers={false} />
-              <Stars
-                radius={100}
-                depth={50}
-                count={2000}
-                factor={2}
-                saturation={0}
-                fade
-                speed={0.2}
+              <Environment
+                preset="dawn"
+                blur={0.3} // Desenfoque sutil
+                ground={{
+                  height: 10, // Altura del plano "tierra"
+                  radius: 60, // Radio de influencia
+                  scale: 100, // Escala del suelo
+                }}
+              />
+
+              <directionalLight
+                position={[5, 5, 5]}
+                intensity={0.8}
+                color="#ffdfb8" // Tono cálido que combina con el sunset
+                castShadow
               />
 
               <UltraSound
@@ -195,6 +239,8 @@ export default function CombinedModelsPage() {
             </Suspense>
           </Canvas>
         </div>
+
+
         <div className={smhStyles.about_section_right}>
           <h1 className={smhStyles.about_section_title}>Detecion</h1>
           <p className={smhStyles.about_section_text}>
@@ -204,6 +250,25 @@ export default function CombinedModelsPage() {
             sanguíneos (para detectar infección) y evaluación clínica de
             síntomas como dolor abdominal o masa palpable..
           </p>
+          <div className={smhStyles.modelInstructions}>
+            <h4 className={smhStyles.instructionsTitle}>
+              Controles del Modelo 3D
+            </h4>
+            <div className={smhStyles.instructionsGrid}>
+              <div className={smhStyles.instructionItem}>
+                • <strong>Rotar:</strong> Clic izquierdo + arrastrar
+                <p>  • <strong>Mover:</strong> Clic derecho + arrastrar  </p>
+                • <strong>Restablecer:</strong> Doble clic
+              </div>
+              <div className={smhStyles.instructionItem}>
+                • <strong>Zoom:</strong> Rueda del ratón
+                <p>• <strong>Tamaño:</strong> flecha arriba/abajo ↑↓</p>
+              </div>
+              <div className={smhStyles.instructionItem}>
+
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -220,6 +285,15 @@ export default function CombinedModelsPage() {
             }}
           >
             <Suspense fallback={null}>
+
+               <PositionalAudio
+                url="/organs-models/smh/Sound/TableS.mp3"
+                distance={8}
+                loop
+                autoplay
+                position={[0, -1, 0]} // Igual que el modelo para que el sonido venga de la mesa
+              />
+           
               {/* PRIMER SISTEMA DE ILUMINACIÓN - Usando tu componente Lights modificado */}
 
               <Lights modelType="operatingTable" showHelpers={false} />
@@ -239,13 +313,7 @@ export default function CombinedModelsPage() {
                 scale={2}
                 rotation={[0, -Math.PI / 4, 0]}
               />
-              <PositionalAudio
-                url="/organs-models/smh/Sound/TableS.mp3"
-                distance={10}
-                loop
-                autoplay
-                position={[0, -1, 0]} // Igual que el modelo para que el sonido venga de la mesa
-              />
+
 
               <Floor />
               <OrbitControls
@@ -276,6 +344,25 @@ export default function CombinedModelsPage() {
             lo que siempre debe ser evaluado por un especialista en cirugía
             digestiva o hepatobiliar.
           </p>
+          <div className={smhStyles.modelInstructions}>
+            <h4 className={smhStyles.instructionsTitle}>
+              Controles del Modelo 3D
+            </h4>
+            <div className={smhStyles.instructionsGrid}>
+              <div className={smhStyles.instructionItem}>
+                • <strong>Rotar:</strong> Clic izquierdo + arrastrar
+                <p>  • <strong>Mover:</strong> Clic derecho + arrastrar  </p>
+                • <strong>Restablecer:</strong> Doble clic
+              </div>
+              <div className={smhStyles.instructionItem}>
+                • <strong>Zoom:</strong> Rueda del ratón
+                <p>• <strong>Tamaño:</strong> flecha arriba/abajo ↑↓</p>
+              </div>
+              <div className={smhStyles.instructionItem}>
+
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </>

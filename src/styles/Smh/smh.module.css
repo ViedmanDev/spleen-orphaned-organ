@@ -91,3 +91,31 @@
 .controls button:hover {
   background-color: #bf5050;
 }
+
+/* Instrucciones para modelos 3D */
+.modelInstructions {
+  padding: 1rem;
+  background-color: #f9fafb;
+  border-top: 1px solid #e5e7eb;
+  margin-top: 0.2rem;
+}
+
+.instructionsTitle {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+  margin-top: 0;
+}
+
+.instructionsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+.instructionItem {
+  font-size: 0.75rem;
+  color: #4b5563;
+}
+
