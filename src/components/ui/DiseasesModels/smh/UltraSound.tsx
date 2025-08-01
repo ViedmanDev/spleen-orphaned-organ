@@ -149,7 +149,7 @@ const UltraSound = ({
 
       {showAudioControls && (
         <Html
-          position={[0.7, 1.1 , 0]}
+          position={[0.7, 1.1, 0]}
           center
           distanceFactor={2}
           style={{ pointerEvents: "auto" }}
