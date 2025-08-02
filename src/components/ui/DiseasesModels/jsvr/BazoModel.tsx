@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
@@ -24,6 +24,25 @@ export default function BazoModel({
 }: BazoModelProps) {
   const groupRef = useRef<THREE.Group>(null)
   const { nodes, materials } = useGLTF('/organs-models/jsvr/bazo.glb') as any
+  const [glowing, setGlowing] = useState(false)
+  const [rightClicked, setRightClicked] = useState(false)
+  const glowTimeout = useRef<NodeJS.Timeout | null>(null)
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'g' || e.key === 'G') {
+        setGlowing(true);
+        console.log('Bazo brillando con tecla G');
+        if (glowTimeout.current) clearTimeout(glowTimeout.current);
+        glowTimeout.current = setTimeout(() => setGlowing(false), 3000);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      if (glowTimeout.current) clearTimeout(glowTimeout.current);
+    };
+  }, []);
 
   useFrame((state) => {
     if (groupRef.current && animate) {
@@ -41,6 +60,18 @@ export default function BazoModel({
           groupRef.current.scale.setScalar(scale * pulseFactor)
           break
       }
+
+      // Efecto de brillo con tecla G
+      if (glowing) {
+        const glowScale = 1 + Math.sin(time * 8) * 0.1
+        groupRef.current.scale.setScalar(scale * glowScale)
+      }
+
+      // Efecto de rotación con click derecho
+      if (rightClicked) {
+        groupRef.current.rotation.y += 0.02
+        groupRef.current.rotation.x += 0.01
+      }
     }
   })
 
@@ -51,6 +82,11 @@ export default function BazoModel({
       scale={scale}
       rotation={rotation}
       dispose={null}
+      onContextMenu={(e) => {
+        e.stopPropagation();
+        setRightClicked(!rightClicked);
+        console.log('Bazo click derecho:', rightClicked ? 'parado' : 'rotando');
+      }}
     >
       {Object.entries(nodes).map(([key, node]: [string, any]) => {
         if (node.isMesh) {
@@ -62,9 +98,12 @@ export default function BazoModel({
                 new THREE.MeshStandardMaterial({ 
                   color: color,
                   metalness: 0.1,
-                  roughness: 0.8
+                  roughness: 0.8,
+                  emissive: glowing ? new THREE.Color(color).multiplyScalar(0.3) : new THREE.Color(0x000000)
                 }) : 
-                materials[node.material?.name] || new THREE.MeshStandardMaterial()
+                materials[node.material?.name] || new THREE.MeshStandardMaterial({
+                  emissive: glowing ? new THREE.Color(0x444444) : new THREE.Color(0x000000)
+                })
               }
               castShadow
               receiveShadow
