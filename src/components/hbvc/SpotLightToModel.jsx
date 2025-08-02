@@ -1,14 +1,24 @@
 /* eslint-disable react/no-unknown-property */
-// src/components/SpotLightToModel.jsx
+// src/components/hbvc/SpotLightToModel.jsx
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
+// import { useHelper } from '@react-three/drei'; // Descomentar si se usan helpers
+
+// import {
+//   HemisphereLightHelper,
+//   PointLightHelper,
+//   SpotLightHelper,
+//   DirectionalLightHelper,
+// } from 'three';
+
+import { MathUtils } from 'three';
 //import { useHelper } from '@react-three/drei';
 import {
  // HemisphereLightHelper,
 //PointLightHelper,
 //SpotLightHelper,
   //DirectionalLightHelper,
-  MathUtils,
+  // MathUtils,
 } from 'three';
 
 const SpotLightToModel = () => {
@@ -18,6 +28,15 @@ const SpotLightToModel = () => {
   const hemisphereLightRef = useRef();
   const spotTargetRef = useRef();
 
+  // Helpers visuales para desarrollo (descomentar si es necesario)
+  /*
+  useHelper(directionalLightRef, DirectionalLightHelper, 1, 'orange');
+  useHelper(spotLightRef, SpotLightHelper, 'red');
+  useHelper(pointLightRef, PointLightHelper, 1, 'cyan');
+  useHelper(hemisphereLightRef, HemisphereLightHelper, 1);
+  */
+
+  // Movimiento suave de luz direccional
   const secondSpotRef = useRef();
   const secondTargetRef = useRef();
 
@@ -48,6 +67,16 @@ const SpotLightToModel = () => {
       {/* Luz hemisférica */}
       <hemisphereLight
         ref={hemisphereLightRef}
+        args={['#222244', '#000000', 0.2]} // skyColor, groundColor, intensity
+      />
+
+      {/* Luz direccional muy suave */}
+      <directionalLight
+        ref={directionalLightRef}
+        color="white"
+        position={[0, 5, 5]}
+        intensity={0.3}
+        castShadow
         args={['#222244', '#000000', 0.2]}
       />
 
@@ -62,8 +91,6 @@ const SpotLightToModel = () => {
         intensity={12}
         penumbra={0.5}
         castShadow
-        shadow-mapSize-width={1024}
-        shadow-mapSize-height={1024}
       />
       <object3D ref={spotTargetRef} position={[0, 0.8, 0]} />
 

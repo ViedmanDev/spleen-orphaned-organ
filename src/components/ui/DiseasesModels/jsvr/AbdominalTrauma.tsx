@@ -1,119 +1,70 @@
-
-import { useGLTF, Environment } from '@react-three/drei';
-import { useState, useRef, useEffect } from 'react';
+import { useGLTF } from '@react-three/drei';
+import { JSX, useRef, useState, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
-interface AbdominalTraumaProps {
-    [key: string]: any;
-}
-
-function AbdominalTrauma(props: AbdominalTraumaProps) {
+function AbdominalTrauma(props: JSX.IntrinsicElements['group']) {
     const { nodes } = useGLTF('/organs-models/jsvr/bazo-imflamado.glb');
-    const [hovered, setHovered] = useState(false);
-    const [clicked, setClicked] = useState(false);
-    const [fastRotate, setFastRotate] = useState(false);
-    const fastRotateTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
     const groupRef = useRef<THREE.Group>(null);
+    const [expanded, setExpanded] = useState(false);
+    const [doubleClicked, setDoubleClicked] = useState(false);
+    const expandTimeout = useRef<NodeJS.Timeout | null>(null);
 
-    // Evento de teclado: tecla 'r' para rotar rápido
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
-            if (e.key === 'r' || e.key === 'R') {
-                setFastRotate(true);
-                if (fastRotateTimeout.current) clearTimeout(fastRotateTimeout.current);
-                fastRotateTimeout.current = setTimeout(() => setFastRotate(false), 1000);
+            if (e.key === 'e' || e.key === 'E') {
+                setExpanded(true);
+                console.log('Trauma abdominal expandido con tecla E');
+                if (expandTimeout.current) clearTimeout(expandTimeout.current);
+                expandTimeout.current = setTimeout(() => setExpanded(false), 2000);
             }
         };
         window.addEventListener('keydown', handleKeyDown);
         return () => {
             window.removeEventListener('keydown', handleKeyDown);
-            if (fastRotateTimeout.current) clearTimeout(fastRotateTimeout.current);
+            if (expandTimeout.current) clearTimeout(expandTimeout.current);
         };
     }, []);
 
     useFrame(() => {
         if (groupRef.current) {
-            if (hovered) {
-                groupRef.current.rotation.y += 0.01;
-            }
-            if (fastRotate) {
-                groupRef.current.rotation.y += 0.1;
-            }
-            if (clicked) {
-                groupRef.current.scale.setScalar(1.05);
+            if (expanded) {
+                const targetScale = 1.5;
+                groupRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.1);
             } else {
-                groupRef.current.scale.setScalar(1);
+                groupRef.current.scale.lerp(new THREE.Vector3(1, 1, 1), 0.1);
+            }
+
+            if (doubleClicked) {
+                groupRef.current.rotation.x += 0.05;
+                groupRef.current.rotation.z += 0.03;
             }
         }
     });
 
-    // Luces y sombras diferentes a AccidenteModel
-    // Luz direccional azulada, sombras duras
-    // Luz puntual cálida, sin sombras
-    // Luz ambiental blanca
     return (
-        <>
-            {/* Fondo de entorno HDRI */}
-            <Environment files="/organs-models/jsvr/Scene/hospital_room_4k.hdr" background />
-            {/* Luz direccional azulada con sombras duras */}
-            <directionalLight
-                position={[3, 6, 4]}
-                intensity={1.1}
-                color="#4a90e2"
-                castShadow
-                shadow-mapSize={[1024, 1024]}
-                shadow-camera-far={30}
-                shadow-camera-left={-8}
-                shadow-camera-right={8}
-                shadow-camera-top={8}
-                shadow-camera-bottom={-8}
-                shadow-radius={1}
-                shadow-blurSamples={3}
-            />
-            {/* Luz puntual cálida, sin sombras */}
-            <pointLight
-                position={[-2, 4, 2]}
-                intensity={0.7}
-                color="#ffb347"
-                castShadow={false}
-            />
-            {/* Luz ambiental blanca */}
-            <ambientLight intensity={0.4} color="#ffffff" />
-
-            <group
-                ref={groupRef}
-                {...props}
-                dispose={null}
-                onPointerOver={(e) => {
-                    e.stopPropagation();
-                    setHovered(true);
-                    document.body.style.cursor = 'pointer';
-                }}
-                onPointerOut={(e) => {
-                    e.stopPropagation();
-                    setHovered(false);
-                    document.body.style.cursor = 'auto';
-                }}
-                onClick={(e) => {
-                    e.stopPropagation();
-                    setClicked(!clicked);
-                    console.log('Modelo de trauma abdominal clickeado:', clicked ? 'deseleccionado' : 'seleccionado');
-                }}
-            >
-                {nodes.Scene?.children.map((child: any) => (
-                    child.name === 'BazoImflamado' && (
-                        <mesh
-                            key={child.uuid}
-                            castShadow
-                            receiveShadow
-                            geometry={child.geometry}
-                            material={child.material}
-                        />
-                    )
-                ))}
-            </group>
-        </>
+        <group
+            {...props}
+            ref={groupRef}
+            dispose={null}
+            onDoubleClick={(e) => {
+                e.stopPropagation();
+                setDoubleClicked(!doubleClicked);
+                console.log('Trauma abdominal doble click:', doubleClicked ? 'parado' : 'rotando');
+            }}
+        >
+            {nodes.Scene?.children.map((child: any) => (
+                child.name === 'BazoImflamado' && (
+                    <mesh
+                        key={child.uuid}
+                        castShadow
+                        receiveShadow
+                        geometry={child.geometry}
+                        material={child.material}
+                    />
+                )
+            ))}
+        </group>
     );
 }
 

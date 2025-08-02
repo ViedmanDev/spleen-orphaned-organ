@@ -9,27 +9,42 @@
     "start": "next start"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.2.3",
     "@react-three/drei": "^10.0.7",
     "@react-three/fiber": "^9.1.2",
     "@react-three/postprocessing": "^3.0.4",
+    "@react-three/rapier": "^2.1.0",
+    "@use-gesture/react": "^10.3.1",
     "antd": "^5.24.8",
+    "lucide-react": "^0.536.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "embla-carousel-react": "^8.6.0",
+    "firebase": "^12.0.0",
     "next": "^15.3.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "tailwind-merge": "^3.3.1",
+    "tailwindcss-animate": "^1.0.7",
     "three": "^0.176.0",
     "three-stdlib": "^2.36.0",
     "zustand": "^5.0.4"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.21.0",
     "@types/node": "22.14.1",
     "@types/react": "^19.1.3",
     "@types/react-dom": "^19.0.4",
+    "autoprefixer": "^10.4.21",
     "eslint": "^9.21.0",
+    "eslint-config-next": "^15.4.4",
     "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^15.15.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.0",
     "typescript": "5.8.3"
   }
 }
