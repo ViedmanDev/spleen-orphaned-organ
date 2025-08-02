@@ -3,12 +3,12 @@
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import { Canvas } from '@react-three/fiber';
-import styles from '../../../../styles/routes/gdtm.module.css';
+import styles from '@styles/routes/gdtm.module.css';
 
-const Bazoinfarto = dynamic(() => import('../../../../components/ui/DiseasesModels/gdtm/Bazoinfarto'), { ssr: false });
-const Medico = dynamic(() => import('../../../../components/ui/DiseasesModels/gdtm/Medico'), { ssr: false });
-const Medicina = dynamic(() => import('../../../../components/ui/DiseasesModels/gdtm/Medicina'), { ssr: false });
-const Habitos = dynamic(() => import('../../../../components/ui/DiseasesModels/gdtm/Habitos'), { ssr: false });
+const Bazoinfarto = dynamic(() => import('@components/ui/DiseasesModels/gdtm/Bazoinfarto'), { ssr: false });
+const Medico = dynamic(() => import('@components/ui/DiseasesModels/gdtm/Medico'), { ssr: false });
+const Medicina = dynamic(() => import('@components/ui/DiseasesModels/gdtm/medicina'), { ssr: false });
+const Habitos = dynamic(() => import('@components/ui/DiseasesModels/gdtm/Habitos'), { ssr: false });
 
 export default function GdtmPage() {
   const [visibleInfo, setVisibleInfo] = useState<number | null>(null);
