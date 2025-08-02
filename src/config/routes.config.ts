@@ -6,7 +6,7 @@ export const routes = {
     trujillo: '/personal-diseases/gdtm',
     viedman: '/personal-diseases/jsvr',
     hurtado: '/personal-diseases/smh',
-    brandon: '/personal-diseases/aga',
+    brandon: '/personal-diseases/hbvc',
     quiz: '/quiz',
     login: '/login',
 };
