@@ -11,6 +11,7 @@ interface AmbientSound3DProps {
   distance?: number
   color?: string
   autoplay?: boolean
+  audioFile?: string // Nueva propiedad para archivos de audio
 }
 
 export default function AmbientSound3D({
@@ -19,7 +20,8 @@ export default function AmbientSound3D({
   volume = 0.3,
   distance = 5,
   color = "#4fc3f7",
-  autoplay = true
+  autoplay = true,
+  audioFile // Nueva propiedad
 }: AmbientSound3DProps) {
   const soundRef = useRef<THREE.PositionalAudio>(null)
   const groupRef = useRef<THREE.Group>(null)
@@ -28,6 +30,8 @@ export default function AmbientSound3D({
   const [audioContext, setAudioContext] = useState<AudioContext | null>(null)
 
   useEffect(() => {
+    let cleanup: (() => void) | undefined
+
     // Crear AudioContext y configurar audio 3D
     const initAudio = async () => {
       try {
@@ -35,69 +39,121 @@ export default function AmbientSound3D({
         const listener = new THREE.AudioListener()
         camera.add(listener)
 
-        // Crear el audio context
-        const context = new (window.AudioContext || (window as any).webkitAudioContext)()
-        setAudioContext(context)
-
         // Crear audio posicional
         const sound = new THREE.PositionalAudio(listener)
         
-        // Crear un oscilador para generar sonido sintético
-        const oscillator = context.createOscillator()
-        const gainNode = context.createGain()
-        
-        oscillator.type = 'sine'
-        oscillator.frequency.value = frequency
-        
-        // Configurar volumen suave
-        gainNode.gain.setValueAtTime(0, context.currentTime)
-        gainNode.gain.linearRampToValueAtTime(volume, context.currentTime + 0.5)
-        
-        // Conectar nodos
-        oscillator.connect(gainNode)
-        gainNode.connect(context.destination)
-        
-        // Configurar propiedades 3D
-        sound.setRefDistance(1)
-        sound.setRolloffFactor(1)
-        sound.setDistanceModel('inverse')
-        sound.setMaxDistance(distance)
-        
-        // Conectar el audio al objeto 3D
-        if (groupRef.current) {
-          groupRef.current.add(sound)
-        }
-        
-        soundRef.current = sound
-
-        if (autoplay && context.state === 'suspended') {
-          // Chrome requiere interacción del usuario para reproducir audio
-          document.addEventListener('click', () => {
-            context.resume()
-          }, { once: true })
+        // Función para configurar propiedades 3D
+        const setup3DAudio = () => {
+          sound.setRefDistance(1)
+          sound.setRolloffFactor(1)
+          sound.setDistanceModel('inverse')
+          sound.setMaxDistance(distance)
+          
+          // Conectar el audio al objeto 3D
+          if (groupRef.current) {
+            groupRef.current.add(sound)
+          }
+          
+          soundRef.current = sound
         }
 
-        if (autoplay) {
-          oscillator.start()
-          setIsPlaying(true)
+        if (audioFile) {
+          // Usar archivo de audio
+          const loader = new THREE.AudioLoader()
+          
+          loader.load(
+            audioFile, 
+            (buffer) => {
+              sound.setBuffer(buffer)
+              sound.setLoop(true)
+              sound.setVolume(volume)
+              
+              setup3DAudio()
+
+              if (autoplay) {
+                // Reproducir cuando el usuario interactúe
+                const playOnClick = () => {
+                  sound.play()
+                  setIsPlaying(true)
+                  document.removeEventListener('click', playOnClick)
+                }
+                document.addEventListener('click', playOnClick, { once: true })
+              }
+            }, 
+            undefined, 
+            (error) => {
+              console.warn('Error al cargar archivo de audio:', error)
+              // Fallback a sonido sintético si falla la carga
+              initSyntheticSound()
+            }
+          )
+        } else {
+          initSyntheticSound()
         }
 
-        return () => {
-          camera.remove(listener)
-          if (context.state !== 'closed') {
-            context.close()
+        function initSyntheticSound() {
+          // Crear el audio context
+          const context = new (window.AudioContext || (window as any).webkitAudioContext)()
+          setAudioContext(context)
+          
+          // Crear un oscilador para generar sonido sintético
+          const oscillator = context.createOscillator()
+          const gainNode = context.createGain()
+          
+          oscillator.type = 'sine'
+          oscillator.frequency.value = frequency
+          
+          // Configurar volumen suave
+          gainNode.gain.setValueAtTime(0, context.currentTime)
+          gainNode.gain.linearRampToValueAtTime(volume, context.currentTime + 0.5)
+          
+          // Conectar nodos
+          oscillator.connect(gainNode)
+          gainNode.connect(context.destination)
+          
+          setup3DAudio()
+
+          if (autoplay && context.state === 'suspended') {
+            // Chrome requiere interacción del usuario para reproducir audio
+            document.addEventListener('click', () => {
+              context.resume()
+            }, { once: true })
+          }
+
+          if (autoplay) {
+            oscillator.start()
+            setIsPlaying(true)
           }
         }
+
+        cleanup = () => {
+          camera.remove(listener)
+          if (audioContext && audioContext.state !== 'closed') {
+            audioContext.close()
+          }
+        }
+
       } catch (error) {
         console.warn('Error al inicializar audio 3D:', error)
       }
     }
 
     initAudio()
-  }, [camera, frequency, volume, distance, autoplay])
+
+    return cleanup
+  }, [camera, frequency, volume, distance, autoplay, audioFile])
 
   const toggleSound = () => {
-    if (audioContext) {
+    if (soundRef.current) {
+      if (isPlaying) {
+        soundRef.current.pause()
+        setIsPlaying(false)
+      } else {
+        soundRef.current.play()
+        setIsPlaying(true)
+      }
+    } else if (audioContext) {
+      // Fallback para sonido sintético
       if (isPlaying) {
         audioContext.suspend()
         setIsPlaying(false)

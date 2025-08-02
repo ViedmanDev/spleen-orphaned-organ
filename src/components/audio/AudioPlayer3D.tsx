@@ -54,7 +54,7 @@ export default function AudioPlayer3D({
 
   const handleAudioReady = (audio: THREE.PositionalAudio) => {
     audioRef.current = audio
-    
+
     // Configurar propiedades del audio 3D
     audio.setRefDistance(1)
     audio.setRolloffFactor(1)
@@ -62,7 +62,7 @@ export default function AudioPlayer3D({
     audio.setMaxDistance(distance)
     audio.setVolume(volume)
     audio.setLoop(loop)
-    
+
     // Agregar event listeners
     if (audio.source) {
       audio.source.addEventListener('canplaythrough', () => {
@@ -86,19 +86,19 @@ export default function AudioPlayer3D({
         url={audioUrl}
         distance={distance}
       />
-      
+
       {/* Control visual interactivo */}
       <mesh onClick={handlePlay}>
         <sphereGeometry args={[0.2, 16, 16]} />
-        <meshStandardMaterial 
-          color={isLoaded ? (isPlaying ? color : "#666666") : "#333333"} 
-          emissive={isLoaded ? (isPlaying ? color : "#000000") : "#000000"} 
+        <meshStandardMaterial
+          color={isLoaded ? (isPlaying ? color : "#666666") : "#333333"}
+          emissive={isLoaded ? (isPlaying ? color : "#000000") : "#000000"}
           emissiveIntensity={isPlaying ? 0.4 : 0}
           transparent
           opacity={0.9}
         />
       </mesh>
-      
+
       {/* Indicador de carga */}
       {!isLoaded && (
         <mesh>
@@ -106,25 +106,25 @@ export default function AudioPlayer3D({
           <meshBasicMaterial color="#888888" transparent opacity={0.5} />
         </mesh>
       )}
-      
+
       {/* Visualización del rango de sonido */}
       {isPlaying && (
         <mesh rotation={[Math.PI / 2, 0, 0]}>
           <ringGeometry args={[distance - 0.2, distance, 32]} />
-          <meshBasicMaterial 
-            color={color} 
-            transparent 
+          <meshBasicMaterial
+            color={color}
+            transparent
             opacity={0.1}
             side={THREE.DoubleSide}
           />
         </mesh>
       )}
-      
+
       {/* Ondas de sonido animadas */}
       {isPlaying && (
         <>
           {[1, 2, 3].map((ring, index) => (
-            <mesh 
+            <mesh
               key={ring}
               rotation={[Math.PI / 2, 0, 0]}
               scale={[
@@ -134,9 +134,9 @@ export default function AudioPlayer3D({
               ]}
             >
               <ringGeometry args={[ring * 0.8, ring * 0.8 + 0.1, 16]} />
-              <meshBasicMaterial 
-                color={color} 
-                transparent 
+              <meshBasicMaterial
+                color={color}
+                transparent
                 opacity={0.3 - index * 0.1}
                 side={THREE.DoubleSide}
               />

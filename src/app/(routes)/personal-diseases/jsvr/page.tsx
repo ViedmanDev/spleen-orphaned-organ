@@ -1,24 +1,65 @@
 "use client"
 
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Environment } from "@react-three/drei";
+import { OrbitControls, Environment, Html } from "@react-three/drei";
 import styles from "@styles/routes/jsvr.module.css"
 import AbdominalTrauma from "@components/ui/DiseasesModels/jsvr/AbdominalTrauma"
 import AccidenteModel from "@components/ui/DiseasesModels/jsvr/AccidenteModel"
 import CirugiaModel from "@components/ui/DiseasesModels/jsvr/CirugiaModel"
 import BazoModel from "@components/ui/DiseasesModels/jsvr/BazoModel"
 import HealthyBazoScene from "@components/ui/DiseasesModels/jsvr/HealthyBazoScene"
+import AmbientSound3D from "@components/audio/AmbientSound3D"
 
 
 export default function jsvr() {
     return (
         <>
+            {/* Estilos CSS para animaciones */}
+            <style jsx>{`
+                @keyframes pulse {
+                    0% { transform: scale(1); }
+                    50% { transform: scale(1.05); }
+                    100% { transform: scale(1); }
+                }
+                
+                @keyframes float {
+                    0%, 100% { transform: translateY(0px); }
+                    50% { transform: translateY(-10px); }
+                }
+                
+                @keyframes glow {
+                    0%, 100% { box-shadow: 0 4px 12px rgba(79, 195, 247, 0.4); }
+                    50% { box-shadow: 0 6px 20px rgba(79, 195, 247, 0.8); }
+                }
+            `}</style>
+
             <section className={styles.about_section}>
                 <div className={styles.about_section_left}>
                     <Canvas className={styles.viewer} camera={{ position: [0, 0, 5.5] }}>
                         <ambientLight intensity={0.5} />
                         <directionalLight position={[5, 5, 5]} intensity={1} />
                         <AbdominalTrauma />
+
+                        {/* Elemento HTML 3D - Indicador de Alerta */}
+                        <Html position={[2, 1.5, 0]} center>
+                            <div style={{
+                                background: 'linear-gradient(135deg, #ff4444, #cc0000)',
+                                border: '2px solid #ffffff',
+                                borderRadius: '12px',
+                                padding: '12px 16px',
+                                color: 'white',
+                                fontWeight: 'bold',
+                                fontSize: '14px',
+                                textAlign: 'center',
+                                boxShadow: '0 4px 12px rgba(255, 68, 68, 0.4)',
+                                minWidth: '160px',
+                                animation: 'pulse 2s infinite',
+                                backdropFilter: 'blur(10px)'
+                            }}>
+                                ⚠️ TRAUMA SEVERO<br />
+                                <span style={{ fontSize: '12px', opacity: 0.9 }}>Requiere atención inmediata</span>
+                            </div>
+                        </Html>
 
                         <OrbitControls enableZoom={true}
                             enableRotate={true}
@@ -50,6 +91,31 @@ export default function jsvr() {
                             <shadowMaterial opacity={0.35} />
                         </mesh>
                         <AccidenteModel softShadows={true} />
+
+                        {/* Elemento HTML 3D - Panel de Síntomas */}
+                        <Html position={[-2.5, 0.8, 1]} center>
+                            <div style={{
+                                background: 'linear-gradient(135deg, #ff8800, #e65100)',
+                                border: '2px solid #ffffff',
+                                borderRadius: '16px',
+                                padding: '16px',
+                                color: 'white',
+                                fontSize: '13px',
+                                textAlign: 'left',
+                                boxShadow: '0 6px 16px rgba(255, 136, 0, 0.3)',
+                                minWidth: '200px',
+                                backdropFilter: 'blur(8px)',
+                                lineHeight: '1.4'
+                            }}>
+                                <div style={{ fontWeight: 'bold', marginBottom: '8px', textAlign: 'center' }}>
+                                    🚨 SÍNTOMAS CRÍTICOS
+                                </div>
+                                <div>• Dolor abdominal intenso</div>
+                                <div>• Mareos y debilidad</div>
+                                <div>• Pulso acelerado</div>
+                                <div>• Palidez cutánea</div>
+                            </div>
+                        </Html>
 
                         <OrbitControls enableZoom={true}
                             enableRotate={true}
@@ -136,6 +202,57 @@ export default function jsvr() {
                             showParticles={true}
                             particleCount={80}
                             glowIntensity={0.25}
+                        />
+
+                        {/* Elemento HTML 3D - Consejos de Prevención */}
+                        <Html position={[0, 2.5, 2]} center>
+                            <div style={{
+                                background: 'linear-gradient(135deg, #4fc3f7, #0288d1)',
+                                border: '2px solid #ffffff',
+                                borderRadius: '20px',
+                                padding: '20px',
+                                color: 'white',
+                                fontSize: '14px',
+                                textAlign: 'center',
+                                boxShadow: '0 8px 20px rgba(79, 195, 247, 0.4)',
+                                minWidth: '250px',
+                                backdropFilter: 'blur(12px)',
+                                lineHeight: '1.5',
+                                animation: 'float 3s ease-in-out infinite, glow 2s ease-in-out infinite'
+                            }}>
+                                <div style={{
+                                    fontWeight: 'bold',
+                                    fontSize: '16px',
+                                    marginBottom: '12px',
+                                    textShadow: '0 2px 4px rgba(0,0,0,0.3)'
+                                }}>
+                                    💙 VIDA SALUDABLE
+                                </div>
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                                    <div>🛡️ Usa cinturón de seguridad</div>
+                                    <div>🏃‍♂️ Ejercicio regular</div>
+                                    <div>🥗 Dieta balanceada</div>
+                                    <div>⚕️ Controles médicos</div>
+                                </div>
+                                <div style={{
+                                    marginTop: '10px',
+                                    fontSize: '12px',
+                                    opacity: 0.9,
+                                    fontStyle: 'italic'
+                                }}>
+                                    Presiona G para efecto especial
+                                </div>
+                            </div>
+                        </Html>
+
+                        {/* Audio 3D General - Ambiente Médico Profesional */}
+                        <AmbientSound3D
+                            position={[2.5, 0, 1]}
+                            audioFile="/audio/medical/medical-ambient.mp3"
+                            volume={1}
+                            distance={8}
+                            color="#4fc3f7"
+                            autoplay={false}
                         />
 
                         <OrbitControls enableZoom={true}

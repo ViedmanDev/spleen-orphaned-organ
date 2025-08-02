@@ -34,7 +34,7 @@ function AbdominalTrauma(props: JSX.IntrinsicElements['group']) {
             } else {
                 groupRef.current.scale.lerp(new THREE.Vector3(1, 1, 1), 0.1);
             }
-            
+
             if (doubleClicked) {
                 groupRef.current.rotation.x += 0.05;
                 groupRef.current.rotation.z += 0.03;
@@ -43,8 +43,8 @@ function AbdominalTrauma(props: JSX.IntrinsicElements['group']) {
     });
 
     return (
-        <group 
-            {...props} 
+        <group
+            {...props}
             ref={groupRef}
             dispose={null}
             onDoubleClick={(e) => {
