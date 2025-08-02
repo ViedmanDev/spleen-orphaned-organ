@@ -1,11 +1,37 @@
 import OrgansSection from '@components/layout/OrgansSection/OrgansSection';
 import styles from './page.module.css';
-import HomeHeader from '@components/layout/Headers/HomeHeader';
+import Image from 'next/image';
+
 
 export default function Home() {
     return (
         <>
-            <HomeHeader />
+            <nav className="flex items-center justify-between px-10 py-12 bg-[#f9fafb]">
+                <div className="flex-1 max-w-2xl">
+                    <h1 className="text-4xl font-bold text-[#BF7E78] mb-4">BIENVENIDO A SCIENCE GATEWAY</h1>
+                    <h1 className="text-5xl font-bold text-[#BF5050] mb-6 leading-tight">
+                        EXPLORA EL <br />
+                        MICROSCOPICO <br />
+                        UNIVERSO DE TÚ <br />
+                        BAZO
+                    </h1>
+                    <p className="text-lg text-[#BF7E78] mb-8 leading-relaxed">
+                        Este es el portal donde la ciencia cobra vida. Te invitamos a descubrir el microscópico universo de tu bazo, un órgano muchas veces ignorado pero fundamental para tu salud. A través de datos curiosos, ilustraciones claras y contenido accesible, aprenderás cómo este pequeño guardián participa en la defensa de tu cuerpo y en el equilibrio de tu sangre. ¡Explora, aprende y sorpréndete!
+                    </p>
+                    <button className="bg-[#990000] text-[#F5F5F5] px-8 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors duration-300">
+                        EXPLORA LAS ENFERMEDADES DEL BAZO
+                    </button>
+                </div>
+                <div className="ml-8">
+                    <Image
+                        src="/assets/bazo.png"
+                        alt="logo"
+                        width={500}
+                        height={500}
+                        className="w-96 h-96 object-contain"
+                    />
+                </div>
+            </nav>
             <section className={styles.info_box}>
                 <div className={styles.card_grid}>
                     <article className={styles.card}>

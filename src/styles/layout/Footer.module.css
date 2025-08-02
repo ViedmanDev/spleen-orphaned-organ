@@ -1,13 +1,14 @@
 .information_container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  overflow: visible;
-  z-index: 2;
-  transform: translateY(30%); /* Reducido de 55% */
-  width: 100%;
-  height: 360px; /* Reducido de 600px */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: visible;
+    z-index: 2;
+    transform: translateY(55%);
+    width: 100%;
+    height: 600px;
+    margin-top: -22%;
 }
 
 .information_block {
@@ -168,7 +169,195 @@
 
 /* ✅ NUEVA CLASE PARA EVITAR EL HYDRATION ERROR */
 .footer_contact_form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* 📱 RESPONSIVE DESIGN */
+
+/* Tablet - 1024px y menos */
+@media (max-width: 1024px) {
+    .information_container {
+        height: 500px;
+        margin-top: -18%;
+    }
+
+    .information_banner {
+        padding-left: 4rem;
+        height: 400px;
+        width: 90%;
+    }
+
+    .information_title {
+        font-size: 48px;
+        margin: 4rem 0 0 0;
+    }
+
+    .footer_container {
+        padding: 20rem 2rem 4rem 2rem;
+        grid-template-columns: 1fr 1.5fr 1fr;
+        gap: 2rem;
+    }
+
+    .footer_contact_input {
+        width: 250px;
+    }
+
+    .footer_contact_button {
+        width: 160px;
+    }
+}
+
+/* Tablet pequeño / Mobile grande - 768px y menos */
+@media (max-width: 768px) {
+    .information_container {
+        height: 450px;
+        margin-top: -15%;
+    }
+
+    .information_banner {
+        padding-left: 2rem;
+        padding-right: 2rem;
+        height: 350px;
+        width: 95%;
+    }
+
+    .information_title {
+        font-size: 36px;
+        margin: 3rem 0 0 0;
+        line-height: 1.2;
+    }
+
+    .information_button {
+        width: 160px;
+        height: 60px;
+        font-size: 14px;
+    }
+
+    .footer_container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        padding: 16rem 2rem 3rem 2rem;
+        gap: 3rem;
+        text-align: left;
+    }
+
+    .footer_nav {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .footer_nav_left {
+        width: 100%;
+    }
+
+    .footer_nav_right {
+        width: 100%;
+    }
+
+    .footer_contact_info {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .footer_contact_input {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .footer_contact_button {
+        width: 100%;
+        max-width: 200px;
+    }
+}
+
+/* Mobile - 480px y menos */
+@media (max-width: 480px) {
+    .information_container {
+        height: 350px;
+        margin-top: -12%;
+    }
+
+    .information_block {
+        width: 90%;
+        height: 150px;
+    }
+
+    .information_banner {
+        padding: 2rem 1rem;
+        height: 280px;
+        width: 95%;
+    }
+
+    .information_title {
+        font-size: 28px;
+        margin: 2rem 0 0 0;
+        line-height: 1.1;
+    }
+
+    .information_button {
+        width: 140px;
+        height: 50px;
+        font-size: 12px;
+    }
+
+    .footer_container {
+        padding: 12rem 1rem 2rem 1rem;
+        gap: 2rem;
+    }
+
+    .footer_info_title,
+    .footer_nav_title,
+    .footer_contact_title {
+        font-size: 18px;
+        margin-bottom: 1rem;
+    }
+
+    .footer_info_text {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    .footer_contact_input {
+        height: 50px;
+        font-size: 14px;
+    }
+
+    .footer_contact_button {
+        height: 50px;
+        font-size: 14px;
+    }
+
+    .socialMedia_icon {
+        font-size: 18px;
+    }
+}
+
+/* Mobile muy pequeño - 320px y menos */
+@media (max-width: 320px) {
+    .information_container {
+        height: 300px;
+        margin-top: -10%;
+    }
+
+    .information_banner {
+        padding: 1.5rem 0.5rem;
+        height: 240px;
+    }
+
+    .information_title {
+        font-size: 24px;
+        margin: 1.5rem 0 0 0;
+    }
+
+    .information_button {
+        width: 120px;
+        height: 45px;
+        font-size: 11px;
+    }
+
+    .footer_container {
+        padding: 10rem 0.5rem 1.5rem 0.5rem;
+    }
 }
